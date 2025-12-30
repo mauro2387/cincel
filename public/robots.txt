@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cincelconstrucciones.com.uy/sitemap.xml
+
+# Rutas principales
+Allow: /
+Allow: /empresa
+Allow: /servicios
+Allow: /obras
+Allow: /zonas
+Allow: /contacto
+Allow: /cotizar
