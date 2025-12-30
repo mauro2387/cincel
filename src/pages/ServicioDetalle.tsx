@@ -47,7 +47,7 @@ export const ServicioDetalle: React.FC = () => {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-cincel-black to-cincel-darkgray text-white py-16 md:py-20">
+      <section className="bg-cincel-black text-white py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Link
@@ -65,10 +65,10 @@ export const ServicioDetalle: React.FC = () => {
                 })()}
               </div>
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-2">
+                <h1 className="text-4xl md:text-5xl font-bold mb-2 text-white">
                   {service.title}
                 </h1>
-                <p className="text-xl text-gray-300">
+                <p className="text-xl text-white">
                   {service.shortDescription}
                 </p>
               </div>
@@ -78,7 +78,7 @@ export const ServicioDetalle: React.FC = () => {
       </section>
 
       {/* Contenido principal */}
-      <section className="section bg-white">
+      <section className="section bg-cincel-lightgray">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
@@ -89,7 +89,7 @@ export const ServicioDetalle: React.FC = () => {
                   <h2 className="text-2xl font-bold text-cincel-black mb-4">
                     Descripción del Servicio
                   </h2>
-                  <p className="text-cincel-gray text-lg leading-relaxed">
+                  <p className="text-cincel-black text-lg leading-relaxed">
                     {service.fullDescription}
                   </p>
                 </div>
@@ -105,7 +105,7 @@ export const ServicioDetalle: React.FC = () => {
                         <span className="w-6 h-6 bg-cincel-gold rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5">
                           ✓
                         </span>
-                        <span className="text-cincel-gray leading-relaxed">{item}</span>
+                        <span className="text-cincel-black leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -118,9 +118,9 @@ export const ServicioDetalle: React.FC = () => {
                   </h2>
                   <div className="grid gap-3">
                     {service.targetAudience.map((audience, index) => (
-                      <div key={index} className="flex items-start gap-3 bg-cincel-lightgray p-4 rounded-lg">
+                      <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-gray-200">
                         <span className="text-cincel-gold text-xl">→</span>
-                        <span className="text-cincel-gray">{audience}</span>
+                        <span className="text-cincel-black">{audience}</span>
                       </div>
                     ))}
                   </div>
@@ -135,7 +135,7 @@ export const ServicioDetalle: React.FC = () => {
                     <h3 className="text-xl font-bold text-cincel-black mb-4">
                       Cotizá este Servicio
                     </h3>
-                    <p className="text-sm text-cincel-gray mb-6">
+                    <p className="text-sm text-cincel-black mb-6">
                       Conversemos sobre tu proyecto y recibí un presupuesto detallado
                     </p>
                     <div className="space-y-3">
@@ -155,25 +155,25 @@ export const ServicioDetalle: React.FC = () => {
                   </div>
 
                   {/* Info adicional */}
-                  <div className="bg-cincel-lightgray p-6 rounded-lg">
+                  <div className="bg-white p-6 rounded-lg">
                     <h4 className="font-bold text-cincel-black mb-3">
-                      📋 Presupuestos sin cargo
+                      Presupuestos sin cargo
                     </h4>
-                    <p className="text-sm text-cincel-gray mb-4">
+                    <p className="text-sm text-cincel-black mb-4">
                       Evaluamos tu proyecto y entregamos presupuesto detallado sin compromiso
                     </p>
                     
                     <h4 className="font-bold text-cincel-black mb-3">
-                      ⏱️ Respuesta en 48hs
+                      Respuesta en 48hs
                     </h4>
-                    <p className="text-sm text-cincel-gray mb-4">
+                    <p className="text-sm text-cincel-black mb-4">
                       Respondemos consultas en menos de 48 horas hábiles
                     </p>
 
                     <h4 className="font-bold text-cincel-black mb-3">
-                      📍 Montevideo y Maldonado
+                      Montevideo y Maldonado
                     </h4>
-                    <p className="text-sm text-cincel-gray">
+                    <p className="text-sm text-cincel-black">
                       Atendemos proyectos en ambas zonas
                     </p>
                   </div>

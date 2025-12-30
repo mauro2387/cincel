@@ -15,7 +15,8 @@ export const Cotizar: React.FC = () => {
     nombre: '',
     telefono: '',
     tipoProyecto: '',
-    ciudad: '',
+    departamento: '',
+    ciudadZona: '',
     urgencia: '',
     presupuesto: '',
   });
@@ -46,8 +47,8 @@ export const Cotizar: React.FC = () => {
       newErrors.tipoProyecto = 'Seleccioná un tipo de proyecto';
     }
 
-    if (currentStep === 3 && !formData.ciudad) {
-      newErrors.ciudad = 'Seleccioná una ciudad';
+    if (currentStep === 3 && !formData.departamento) {
+      newErrors.departamento = 'Seleccioná un departamento';
     }
 
     setErrors(newErrors);
@@ -80,7 +81,8 @@ export const Cotizar: React.FC = () => {
 *Nombre:* ${formData.nombre}
 *Teléfono:* ${formData.telefono}
 *Tipo de Proyecto:* ${formData.tipoProyecto}
-*Ciudad:* ${formData.ciudad}
+*Departamento:* ${formData.departamento}
+*Ciudad/Zona:* ${formData.ciudadZona || 'No especificada'}
 *Urgencia:* ${formData.urgencia || 'No especificada'}
 *Presupuesto Estimado:* ${formData.presupuesto || 'No especificado'}
 
@@ -223,23 +225,55 @@ Solicito cotización para este proyecto.
                   <h2 className="text-2xl font-bold text-cincel-black mb-6">
                     3. ¿Dónde está ubicado tu proyecto?
                   </h2>
-                  <div>
-                    <label htmlFor="ciudad" className="block text-sm font-semibold text-cincel-black mb-2">
-                      Ciudad <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      id="ciudad"
-                      name="ciudad"
-                      value={formData.ciudad}
-                      onChange={handleChange}
-                      className={`input-field ${errors.ciudad ? 'input-error' : ''}`}
-                    >
-                      <option value="">Seleccioná una ciudad</option>
-                      <option value="Montevideo">Montevideo</option>
-                      <option value="Maldonado">Maldonado (Punta del Este, La Barra, etc.)</option>
-                      <option value="Otra">Otra (consultar disponibilidad)</option>
-                    </select>
-                    {errors.ciudad && <p className="text-red-500 text-sm mt-1">{errors.ciudad}</p>}
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="departamento" className="block text-sm font-semibold text-cincel-black mb-2">
+                        Departamento <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        id="departamento"
+                        name="departamento"
+                        value={formData.departamento}
+                        onChange={handleChange}
+                        className={`input-field ${errors.departamento ? 'input-error' : ''}`}
+                      >
+                        <option value="">Seleccioná un departamento</option>
+                        <option value="Artigas">Artigas</option>
+                        <option value="Canelones">Canelones</option>
+                        <option value="Cerro Largo">Cerro Largo</option>
+                        <option value="Colonia">Colonia</option>
+                        <option value="Durazno">Durazno</option>
+                        <option value="Flores">Flores</option>
+                        <option value="Florida">Florida</option>
+                        <option value="Lavalleja">Lavalleja</option>
+                        <option value="Maldonado">Maldonado</option>
+                        <option value="Montevideo">Montevideo</option>
+                        <option value="Paysandú">Paysandú</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Rivera">Rivera</option>
+                        <option value="Rocha">Rocha</option>
+                        <option value="Salto">Salto</option>
+                        <option value="San José">San José</option>
+                        <option value="Soriano">Soriano</option>
+                        <option value="Tacuarembó">Tacuarembó</option>
+                        <option value="Treinta y Tres">Treinta y Tres</option>
+                      </select>
+                      {errors.departamento && <p className="text-red-500 text-sm mt-1">{errors.departamento}</p>}
+                    </div>
+                    <div>
+                      <label htmlFor="ciudadZona" className="block text-sm font-semibold text-cincel-black mb-2">
+                        Ciudad/Zona
+                      </label>
+                      <input
+                        type="text"
+                        id="ciudadZona"
+                        name="ciudadZona"
+                        value={formData.ciudadZona}
+                        onChange={handleChange}
+                        className="input-field"
+                        placeholder="Ej: Punta del Este, La Barra, Carrasco, etc."
+                      />
+                    </div>
                   </div>
                 </div>
               )}
@@ -281,10 +315,12 @@ Solicito cotización para este proyecto.
                         className="input-field"
                       >
                         <option value="">Seleccioná</option>
-                        <option value="Menos de 5.000">Menos de 5.000</option>
-                        <option value="5.000 - 15.000">5.000 - 15.000</option>
-                        <option value="15.000 - 30.000">15.000 - 30.000</option>
-                        <option value="30.000 - 50.000">30.000 - 50.000</option>
+                        <option value="Menos de 1.000">Menos de 1.000</option>
+                        <option value="1.000 - 3.000">1.000 - 3.000</option>
+                        <option value="3.000 - 5.000">3.000 - 5.000</option>
+                        <option value="5.000 - 10.000">5.000 - 10.000</option>
+                        <option value="10.000 - 20.000">10.000 - 20.000</option>
+                        <option value="20.000 - 50.000">20.000 - 50.000</option>
                         <option value="Más de 50.000">Más de 50.000</option>
                         <option value="No lo sé">No lo sé</option>
                       </select>
@@ -307,9 +343,15 @@ Solicito cotización para este proyecto.
                         <dd className="font-semibold text-cincel-black">{formData.tipoProyecto}</dd>
                       </div>
                       <div className="flex justify-between">
-                        <dt className="text-cincel-gray">Ciudad:</dt>
-                        <dd className="font-semibold text-cincel-black">{formData.ciudad}</dd>
+                        <dt className="text-cincel-gray">Departamento:</dt>
+                        <dd className="font-semibold text-cincel-black">{formData.departamento}</dd>
                       </div>
+                      {formData.ciudadZona && (
+                        <div className="flex justify-between">
+                          <dt className="text-cincel-gray">Ciudad/Zona:</dt>
+                          <dd className="font-semibold text-cincel-black">{formData.ciudadZona}</dd>
+                        </div>
+                      )}
                     </dl>
                   </div>
                 </div>

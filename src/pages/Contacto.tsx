@@ -14,8 +14,8 @@ export const Contacto: React.FC = () => {
     nombre: '',
     telefono: '',
     email: '',
-    ciudad: '',
-    barrio: '',
+    departamento: '',
+    ciudadZona: '',
     servicio: '',
     urgencia: '',
     presupuesto: '',
@@ -51,8 +51,8 @@ export const Contacto: React.FC = () => {
       newErrors.email = 'Email inválido';
     }
 
-    if (!formData.ciudad) {
-      newErrors.ciudad = 'Seleccioná una ciudad';
+    if (!formData.departamento) {
+      newErrors.departamento = 'Seleccioná un departamento';
     }
 
     setErrors(newErrors);
@@ -71,7 +71,7 @@ export const Contacto: React.FC = () => {
     // Track del envío
     trackContactSubmit({
       service: formData.servicio,
-      city: formData.ciudad,
+      city: formData.departamento,
       urgency: formData.urgencia,
     });
 
@@ -82,8 +82,8 @@ export const Contacto: React.FC = () => {
 *Nombre:* ${formData.nombre}
 *Teléfono:* ${formData.telefono}
 ${formData.email ? `*Email:* ${formData.email}` : ''}
-*Ciudad:* ${formData.ciudad}
-${formData.barrio ? `*Barrio/Zona:* ${formData.barrio}` : ''}
+*Departamento:* ${formData.departamento}
+${formData.ciudadZona ? `*Ciudad/Zona:* ${formData.ciudadZona}` : ''}
 ${formData.servicio ? `*Servicio:* ${formData.servicio}` : ''}
 ${formData.urgencia ? `*Urgencia:* ${formData.urgencia}` : ''}
 ${formData.presupuesto ? `*Presupuesto estimado:* ${formData.presupuesto}` : ''}
@@ -103,8 +103,8 @@ ${formData.mensaje || 'Sin mensaje adicional'}
         nombre: '',
         telefono: '',
         email: '',
-        ciudad: '',
-        barrio: '',
+        departamento: '',
+        ciudadZona: '',
         servicio: '',
         urgencia: '',
         presupuesto: '',
@@ -197,35 +197,51 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                     </div>
                   </div>
 
-                  {/* Ciudad y Barrio */}
+                  {/* Departamento y Ciudad/Zona */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="ciudad" className="block text-sm font-semibold text-cincel-black mb-2">
-                        Ciudad <span className="text-red-500">*</span>
+                      <label htmlFor="departamento" className="block text-sm font-semibold text-cincel-black mb-2">
+                        Departamento <span className="text-red-500">*</span>
                       </label>
                       <select
-                        id="ciudad"
-                        name="ciudad"
-                        value={formData.ciudad}
+                        id="departamento"
+                        name="departamento"
+                        value={formData.departamento}
                         onChange={handleChange}
-                        className={`input-field ${errors.ciudad ? 'input-error' : ''}`}
+                        className={`input-field ${errors.departamento ? 'input-error' : ''}`}
                       >
                         <option value="">Seleccioná</option>
-                        <option value="Montevideo">Montevideo</option>
+                        <option value="Artigas">Artigas</option>
+                        <option value="Canelones">Canelones</option>
+                        <option value="Cerro Largo">Cerro Largo</option>
+                        <option value="Colonia">Colonia</option>
+                        <option value="Durazno">Durazno</option>
+                        <option value="Flores">Flores</option>
+                        <option value="Florida">Florida</option>
+                        <option value="Lavalleja">Lavalleja</option>
                         <option value="Maldonado">Maldonado</option>
-                        <option value="Otra">Otra</option>
+                        <option value="Montevideo">Montevideo</option>
+                        <option value="Paysandú">Paysandú</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Rivera">Rivera</option>
+                        <option value="Rocha">Rocha</option>
+                        <option value="Salto">Salto</option>
+                        <option value="San José">San José</option>
+                        <option value="Soriano">Soriano</option>
+                        <option value="Tacuarembó">Tacuarembó</option>
+                        <option value="Treinta y Tres">Treinta y Tres</option>
                       </select>
-                      {errors.ciudad && <p className="text-red-500 text-sm mt-1">{errors.ciudad}</p>}
+                      {errors.departamento && <p className="text-red-500 text-sm mt-1">{errors.departamento}</p>}
                     </div>
                     <div>
-                      <label htmlFor="barrio" className="block text-sm font-semibold text-cincel-black mb-2">
-                        Barrio / Zona
+                      <label htmlFor="ciudadZona" className="block text-sm font-semibold text-cincel-black mb-2">
+                        Ciudad / Zona
                       </label>
                       <input
                         type="text"
-                        id="barrio"
-                        name="barrio"
-                        value={formData.barrio}
+                        id="ciudadZona"
+                        name="ciudadZona"
+                        value={formData.ciudadZona}
                         onChange={handleChange}
                         className="input-field"
                         placeholder="Ej: Pocitos, La Barra, etc."
@@ -285,10 +301,12 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                         className="input-field"
                       >
                         <option value="">Seleccioná</option>
-                        <option value="Menos de 5.000">Menos de 5.000</option>
-                        <option value="5.000 - 15.000">5.000 - 15.000</option>
-                        <option value="15.000 - 30.000">15.000 - 30.000</option>
-                        <option value="30.000 - 50.000">30.000 - 50.000</option>
+                        <option value="Menos de 1.000">Menos de 1.000</option>
+                        <option value="1.000 - 3.000">1.000 - 3.000</option>
+                        <option value="3.000 - 5.000">3.000 - 5.000</option>
+                        <option value="5.000 - 10.000">5.000 - 10.000</option>
+                        <option value="10.000 - 20.000">10.000 - 20.000</option>
+                        <option value="20.000 - 50.000">20.000 - 50.000</option>
                         <option value="Más de 50.000">Más de 50.000</option>
                         <option value="No lo sé aún">No lo sé aún</option>
                       </select>
@@ -352,7 +370,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                   </div>
 
                   <div className="bg-cincel-lightgray p-6 rounded-lg">
-                    <h4 className="font-bold text-cincel-black mb-3">📋 Respuesta en 48hs</h4>
+                    <h4 className="font-bold text-cincel-black mb-3">Respuesta en 48hs</h4>
                     <p className="text-sm text-cincel-gray">
                       Respondemos todas las consultas en menos de 48 horas hábiles
                     </p>
