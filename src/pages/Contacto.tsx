@@ -303,7 +303,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                     </div>
                     <div>
                       <label htmlFor="presupuesto" className="block text-sm font-semibold text-cincel-black mb-2">
-                        Presupuesto Estimado (USD)
+                        Presupuesto Estimado (UYU)
                       </label>
                       <select
                         id="presupuesto"
@@ -313,13 +313,13 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                         className="input-field"
                       >
                         <option value="">Seleccioná</option>
-                        <option value="Menos de 1.000">Menos de 1.000</option>
-                        <option value="1.000 - 3.000">1.000 - 3.000</option>
-                        <option value="3.000 - 5.000">3.000 - 5.000</option>
-                        <option value="5.000 - 10.000">5.000 - 10.000</option>
-                        <option value="10.000 - 20.000">10.000 - 20.000</option>
-                        <option value="20.000 - 50.000">20.000 - 50.000</option>
-                        <option value="Más de 50.000">Más de 50.000</option>
+                        <option value="Menos de $20.000">Menos de $20.000</option>
+                        <option value="$20.000 - $100.000">$20.000 - $100.000</option>
+                        <option value="$100.000 - $300.000">$100.000 - $300.000</option>
+                        <option value="$300.000 - $500.000">$300.000 - $500.000</option>
+                        <option value="$500.000 - $1.000.000">$500.000 - $1.000.000</option>
+                        <option value="$1.000.000 - $2.000.000">$1.000.000 - $2.000.000</option>
+                        <option value="Más de $2.000.000">Más de $2.000.000</option>
                         <option value="No lo sé aún">No lo sé aún</option>
                       </select>
                     </div>
