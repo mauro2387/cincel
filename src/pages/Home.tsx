@@ -4,6 +4,7 @@
  * Página principal con hero, servicios, valores, proyectos y llamadas a la acción.
  */
 
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { SEO, getHomeSchema } from '../components/SEO';
 import { brandConfig } from '../config/brand';
