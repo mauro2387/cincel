@@ -456,7 +456,7 @@ export const Home: React.FC = () => {
               ¿Tenés un proyecto en mente?
             </h2>
             <p className="text-xl text-cincel-dark mb-8">
-              Conversemos. Te brindamos un presupuesto claro, sin sorpresas, y un cronograma realista.
+              Conversemos. Te damos una estimación clara y realista, basada en la información inicial, y un plazo aproximado, que se ajusta a medida que el proyecto avanza.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
