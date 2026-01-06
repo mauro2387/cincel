@@ -87,6 +87,39 @@ export const Empresa: React.FC = () => {
               </div>
             </div>
 
+            {/* Misión y Visión */}
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-cincel-lightgray p-8 rounded-lg">
+                <h3 className="text-2xl font-bold text-cincel-black mb-4">Misión</h3>
+                <div className="space-y-3 text-cincel-dark leading-relaxed">
+                  <p>
+                    Construir y reformar espacios con calidad, responsabilidad y compromiso, brindando soluciones 
+                    constructivas sólidas y duraderas que superen las expectativas de nuestros clientes.
+                  </p>
+                  <p>
+                    En Cincel Construcciones trabajamos con profesionalismo, experiencia y atención al detalle, 
+                    asegurando obras bien hechas, procesos claros y resultados confiables, desde el primer contacto 
+                    hasta la entrega final.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-cincel-lightgray p-8 rounded-lg">
+                <h3 className="text-2xl font-bold text-cincel-black mb-4">Visión</h3>
+                <div className="space-y-3 text-cincel-dark leading-relaxed">
+                  <p>
+                    Ser una empresa constructora referente en Uruguay, reconocida por su seriedad, cumplimiento y 
+                    excelencia técnica, con fuerte presencia en Montevideo y Maldonado.
+                  </p>
+                  <p>
+                    Buscamos crecer de forma ordenada y sostenible, liderando proyectos cada vez más importantes, 
+                    posicionándonos como la primera opción para quienes buscan construir con confianza, respaldo y 
+                    tranquilidad.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Imágenes del equipo y proceso */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="relative h-48 rounded-lg overflow-hidden">
