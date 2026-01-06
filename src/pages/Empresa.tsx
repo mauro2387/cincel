@@ -177,7 +177,7 @@ export const Empresa: React.FC = () => {
             <div className="space-y-6">
               <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-white border-2 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     1
                   </div>
                   <div>
@@ -191,7 +191,7 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-white border-2 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     2
                   </div>
                   <div>
@@ -205,7 +205,7 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-white border-2 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     3
                   </div>
                   <div>
@@ -219,7 +219,7 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-white border-2 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     4
                   </div>
                   <div>
@@ -233,7 +233,7 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-white border-2 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     5
                   </div>
                   <div>
@@ -247,7 +247,7 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-white border-2 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     6
                   </div>
                   <div>
