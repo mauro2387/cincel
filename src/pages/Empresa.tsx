@@ -107,8 +107,8 @@ export const Empresa: React.FC = () => {
       <section className="section" style={{ backgroundColor: '#183950' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="section-title text-center text-white">Nuestros Valores</h2>
-            <p className="section-subtitle text-center max-w-2xl mx-auto text-gray-200">
+            <h2 className="section-title text-center !text-white">Nuestros Valores</h2>
+            <p className="section-subtitle text-center max-w-2xl mx-auto !text-gray-200">
               Los principios que guían cada uno de nuestros proyectos
             </p>
 
