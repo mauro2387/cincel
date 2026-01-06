@@ -219,8 +219,13 @@ const ChatView: React.FC<{
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    marcarLeido(conversation.id);
-  }, [messages, conversation.id]);
+  }, [messages]);
+
+  useEffect(() => {
+    if (conversation.mensajes_sin_leer > 0) {
+      marcarLeido(conversation.id);
+    }
+  }, [conversation.id, conversation.mensajes_sin_leer, marcarLeido]);
 
   const handleSend = () => {
     if (newMessage.trim()) {
