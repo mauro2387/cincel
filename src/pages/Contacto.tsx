@@ -133,7 +133,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
               Contacto
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Completá el formulario y recibí un presupuesto sin compromiso
+              Completá el formulario y recibí un presupuesto estimado sin compromiso
             </p>
           </div>
         </div>
