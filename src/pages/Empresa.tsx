@@ -34,7 +34,7 @@ export const Empresa: React.FC = () => {
               Quiénes Somos
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Una constructora con trayectoria, compromiso y presencia en todo Uruguay
+              Una constructora con trayectoria y compromiso que trabaja en todo el Uruguay
             </p>
           </div>
         </div>
