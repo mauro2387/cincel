@@ -60,7 +60,7 @@ export const brandConfig = {
     {
       id: 'experiencia',
       title: 'Experiencia Comprobada',
-      description: 'Años de trayectoria en el sector de la construcción en Uruguay',
+      description: 'Años de trayectoria en el sector de la construcción',
     },
     {
       id: 'calidad',
