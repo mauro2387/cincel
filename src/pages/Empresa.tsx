@@ -275,7 +275,7 @@ export const Empresa: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="section-title text-center">Garantías y Certificaciones</h2>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
                   <CheckShieldIcon style={{ color: '#c08826' }} size={64} />
