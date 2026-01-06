@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Servicios profesionales de construcción en Montevideo y Maldonado.
+              Servicios profesionales de construcción en todo el país.
               Planificación, cumplimiento y presupuestos claros.
             </p>
           </div>
