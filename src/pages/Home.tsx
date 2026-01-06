@@ -21,7 +21,6 @@ import {
   CameraIcon,
   RulerIcon
 } from '../components/Icons';
-import { PlaceholderImage } from '../components/PlaceholderImage';
 
 export const Home: React.FC = () => {
   const featuredServices = services.slice(0, 3);
