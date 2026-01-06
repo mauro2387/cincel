@@ -8,6 +8,7 @@ import { SEO } from '../components/SEO';
 import { services } from '../content/services';
 import { trackQuoteSubmit } from '../lib/analytics';
 import { generateWhatsAppLink } from '../lib/whatsapp';
+import { getDepartamentos, getCiudadesByDepartamento } from '../data/locations';
 
 export const Cotizar: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -23,10 +24,20 @@ export const Cotizar: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [ciudadesDisponibles, setCiudadesDisponibles] = useState<string[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Si cambia el departamento, actualizar las ciudades disponibles
+    if (name === 'departamento') {
+      const ciudades = getCiudadesByDepartamento(value);
+      setCiudadesDisponibles(ciudades);
+      setFormData(prev => ({ ...prev, [name]: value, ciudadZona: '' }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
+    
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -255,25 +266,9 @@ ${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}
                         className={`input-field ${errors.departamento ? 'input-error' : ''}`}
                       >
                         <option value="">Seleccioná un departamento</option>
-                        <option value="Artigas">Artigas</option>
-                        <option value="Canelones">Canelones</option>
-                        <option value="Cerro Largo">Cerro Largo</option>
-                        <option value="Colonia">Colonia</option>
-                        <option value="Durazno">Durazno</option>
-                        <option value="Flores">Flores</option>
-                        <option value="Florida">Florida</option>
-                        <option value="Lavalleja">Lavalleja</option>
-                        <option value="Maldonado">Maldonado</option>
-                        <option value="Montevideo">Montevideo</option>
-                        <option value="Paysandú">Paysandú</option>
-                        <option value="Río Negro">Río Negro</option>
-                        <option value="Rivera">Rivera</option>
-                        <option value="Rocha">Rocha</option>
-                        <option value="Salto">Salto</option>
-                        <option value="San José">San José</option>
-                        <option value="Soriano">Soriano</option>
-                        <option value="Tacuarembó">Tacuarembó</option>
-                        <option value="Treinta y Tres">Treinta y Tres</option>
+                        {getDepartamentos().map(dep => (
+                          <option key={dep} value={dep}>{dep}</option>
+                        ))}
                       </select>
                       {errors.departamento && <p className="text-red-500 text-sm mt-1">{errors.departamento}</p>}
                     </div>
@@ -281,15 +276,32 @@ ${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}
                       <label htmlFor="ciudadZona" className="block text-sm font-semibold text-cincel-black mb-2">
                         Ciudad/Zona
                       </label>
-                      <input
-                        type="text"
-                        id="ciudadZona"
-                        name="ciudadZona"
-                        value={formData.ciudadZona}
-                        onChange={handleChange}
-                        className="input-field"
-                        placeholder="Ej: Punta del Este, La Barra, Carrasco, etc."
-                      />
+                      {ciudadesDisponibles.length > 0 ? (
+                        <select
+                          id="ciudadZona"
+                          name="ciudadZona"
+                          value={formData.ciudadZona}
+                          onChange={handleChange}
+                          className="input-field"
+                        >
+                          <option value="">Seleccioná una ciudad/zona</option>
+                          {ciudadesDisponibles.map(ciudad => (
+                            <option key={ciudad} value={ciudad}>{ciudad}</option>
+                          ))}
+                          <option value="Otra">Otra</option>
+                        </select>
+                      ) : (
+                        <input
+                          type="text"
+                          id="ciudadZona"
+                          name="ciudadZona"
+                          value={formData.ciudadZona}
+                          onChange={handleChange}
+                          className="input-field"
+                          placeholder="Primero seleccioná un departamento"
+                          disabled={!formData.departamento}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
