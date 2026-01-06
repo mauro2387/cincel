@@ -5,7 +5,8 @@
 import React, { useState } from 'react';
 import { format, parseISO, isToday, isPast } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { useTareasStore, Tarea, TareaEstado, TareaPrioridad, TareaTipo } from '../store/tareasStore';
+import { useTareasStore } from '../store/tareasStore';
+import type { Tarea, TareaPrioridad, TareaTipo } from '../store/tareasStore';
 
 // Iconos
 const PlusIcon = () => (
@@ -116,21 +117,6 @@ const getPrioridadColor = (prioridad: TareaPrioridad) => {
       return 'bg-gray-100 text-gray-700 border-gray-200';
     default:
       return 'bg-gray-100 text-gray-700 border-gray-200';
-  }
-};
-
-const getEstadoColor = (estado: TareaEstado) => {
-  switch (estado) {
-    case 'pendiente':
-      return 'bg-gray-100 text-gray-700';
-    case 'en_progreso':
-      return 'bg-blue-100 text-blue-700';
-    case 'completada':
-      return 'bg-green-100 text-green-700';
-    case 'cancelada':
-      return 'bg-red-100 text-red-700';
-    default:
-      return 'bg-gray-100 text-gray-700';
   }
 };
 
@@ -388,7 +374,7 @@ export const TareasPage: React.FC = () => {
   } = useTareasStore();
 
   const [showNewModal, setShowNewModal] = useState(false);
-  const [vista, setVista] = useState<'lista' | 'kanban'>('lista');
+  const [_vista, _setVista] = useState<'lista' | 'kanban'>('lista');
 
   const tareasFiltradas = getTareasFiltradas();
   const tareasHoy = getTareasHoy();

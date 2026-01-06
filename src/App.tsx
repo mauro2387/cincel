@@ -17,10 +17,7 @@ import { Cotizar } from './pages/Cotizar';
 import {
   AdminLayout,
   LoginPage,
-  DashboardPage,
   LeadsPage,
-  ObrasPage as AdminObrasPage,
-  ClientesPage,
 } from './admin';
 import { PipelinePage } from './admin/pages/PipelinePage';
 import { PresupuestosPageV2 } from './admin/pages/PresupuestosPageV2';

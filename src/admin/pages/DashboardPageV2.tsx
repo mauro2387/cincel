@@ -2,7 +2,7 @@
  * Dashboard Page V2 - Dashboard mejorado con KPIs y gráficas
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { format, isToday, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useDashboardStore } from '../store/dashboardStore';
@@ -174,8 +174,6 @@ const SimpleBarChart: React.FC<{
 const SalesFunnel: React.FC<{
   data: { etapa: string; cantidad: number; valor: number }[];
 }> = ({ data }) => {
-  const maxCantidad = Math.max(...data.map((d) => d.cantidad));
-
   return (
     <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Embudo de Ventas</h3>

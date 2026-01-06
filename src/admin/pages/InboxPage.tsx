@@ -4,8 +4,8 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { format, isToday, isYesterday, parseISO } from 'date-fns';
-import { es } from 'date-fns/locale';
-import { useInboxStore, CanalMensaje, EstadoConversacion, Conversacion, Mensaje } from '../store/inboxStore';
+import { useInboxStore } from '../store/inboxStore';
+import type { CanalMensaje, EstadoConversacion, Conversacion, Mensaje } from '../store/inboxStore';
 
 // Iconos
 const WhatsAppIcon = () => (

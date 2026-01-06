@@ -3,14 +3,8 @@
  */
 
 import React, { useState } from 'react';
-import {
-  useConfigStore,
-  Usuario,
-  RolUsuario,
-  Servicio,
-  EtapaPipeline,
-  PlantillaPresupuesto,
-} from '../store/configStore';
+import { useConfigStore } from '../store/configStore';
+import type { RolUsuario } from '../store/configStore';
 
 // Iconos
 const PlusIcon = () => (
@@ -50,12 +44,6 @@ const TemplateIcon = () => (
   </svg>
 );
 
-const XIcon = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-  </svg>
-);
-
 const EditIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -80,14 +68,12 @@ const getRolColor = (rol: RolUsuario) => {
   switch (rol) {
     case 'admin':
       return 'bg-red-100 text-red-700';
-    case 'gerente':
-      return 'bg-purple-100 text-purple-700';
     case 'vendedor':
       return 'bg-blue-100 text-blue-700';
-    case 'operativo':
+    case 'supervisor':
+      return 'bg-purple-100 text-purple-700';
+    case 'operaciones':
       return 'bg-green-100 text-green-700';
-    case 'contador':
-      return 'bg-yellow-100 text-yellow-700';
     default:
       return 'bg-gray-100 text-gray-700';
   }
@@ -97,9 +83,7 @@ type SeccionConfig = 'usuarios' | 'servicios' | 'pipeline' | 'plantillas' | 'gen
 
 // Sección de Usuarios
 const SeccionUsuarios: React.FC = () => {
-  const { usuarios, addUsuario, updateUsuario, deleteUsuario } = useConfigStore();
-  const [showModal, setShowModal] = useState(false);
-  const [editingUser, setEditingUser] = useState<Usuario | null>(null);
+  const { usuarios, deleteUsuario } = useConfigStore();
 
   return (
     <div>
@@ -108,13 +92,7 @@ const SeccionUsuarios: React.FC = () => {
           <h3 className="text-lg font-semibold text-gray-900">Usuarios del Sistema</h3>
           <p className="text-sm text-gray-500">Gestiona los usuarios y sus permisos</p>
         </div>
-        <button
-          onClick={() => {
-            setEditingUser(null);
-            setShowModal(true);
-          }}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-        >
+        <button className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
           <PlusIcon /> Nuevo Usuario
         </button>
       </div>
@@ -158,13 +136,7 @@ const SeccionUsuarios: React.FC = () => {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-2">
-                    <button
-                      onClick={() => {
-                        setEditingUser(usuario);
-                        setShowModal(true);
-                      }}
-                      className="p-2 hover:bg-gray-100 rounded-lg text-gray-500"
-                    >
+                    <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-500">
                       <EditIcon />
                     </button>
                     <button
@@ -190,9 +162,7 @@ const SeccionUsuarios: React.FC = () => {
 
 // Sección de Servicios
 const SeccionServicios: React.FC = () => {
-  const { servicios, addServicio, updateServicio, deleteServicio } = useConfigStore();
-  const [showModal, setShowModal] = useState(false);
-  const [editingServicio, setEditingServicio] = useState<Servicio | null>(null);
+  const { servicios, deleteServicio } = useConfigStore();
 
   return (
     <div>
@@ -201,13 +171,7 @@ const SeccionServicios: React.FC = () => {
           <h3 className="text-lg font-semibold text-gray-900">Catálogo de Servicios</h3>
           <p className="text-sm text-gray-500">Servicios que ofrece la empresa</p>
         </div>
-        <button
-          onClick={() => {
-            setEditingServicio(null);
-            setShowModal(true);
-          }}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-        >
+        <button className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
           <PlusIcon /> Nuevo Servicio
         </button>
       </div>
@@ -216,20 +180,11 @@ const SeccionServicios: React.FC = () => {
         {servicios.map((servicio) => (
           <div key={servicio.id} className="bg-white rounded-xl border p-4">
             <div className="flex items-start justify-between mb-3">
-              <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-white"
-                style={{ backgroundColor: servicio.color || '#3B82F6' }}
-              >
+              <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
                 <CatalogIcon />
               </div>
               <div className="flex gap-1">
-                <button
-                  onClick={() => {
-                    setEditingServicio(servicio);
-                    setShowModal(true);
-                  }}
-                  className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-500"
-                >
+                <button className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-500">
                   <EditIcon />
                 </button>
                 <button
@@ -248,17 +203,22 @@ const SeccionServicios: React.FC = () => {
             <p className="text-sm text-gray-500 mb-3">{servicio.descripcion}</p>
             <div className="flex items-center justify-between">
               <span className="text-lg font-bold text-gray-900">
-                {formatCurrency(servicio.precio_base)}
+                {formatCurrency(servicio.precio_base || 0)}
               </span>
-              <span className="text-xs text-gray-400">por {servicio.unidad}</span>
+              <span className="text-xs text-gray-400">por {servicio.unidad || 'proyecto'}</span>
             </div>
-            <span
-              className={`mt-2 inline-block px-2 py-1 text-xs rounded-full ${
-                servicio.activo ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
-              }`}
-            >
-              {servicio.activo ? 'Activo' : 'Inactivo'}
-            </span>
+            <div className="flex gap-2 mt-2">
+              <span className="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-600">
+                {servicio.categoria}
+              </span>
+              <span
+                className={`px-2 py-1 text-xs rounded-full ${
+                  servicio.activo ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                }`}
+              >
+                {servicio.activo ? 'Activo' : 'Inactivo'}
+              </span>
+            </div>
           </div>
         ))}
       </div>
@@ -268,7 +228,7 @@ const SeccionServicios: React.FC = () => {
 
 // Sección de Pipeline
 const SeccionPipeline: React.FC = () => {
-  const { etapasPipeline, updateEtapaPipeline } = useConfigStore();
+  const { etapasPipeline } = useConfigStore();
 
   return (
     <div>
@@ -316,26 +276,22 @@ const SeccionPipeline: React.FC = () => {
                         <div
                           className="h-full rounded-full"
                           style={{
-                            width: `${etapa.probabilidad_cierre}%`,
+                            width: `${etapa.probabilidad}%`,
                             backgroundColor: etapa.color,
                           }}
                         />
                       </div>
-                      <span className="text-sm">{etapa.probabilidad_cierre}%</span>
+                      <span className="text-sm">{etapa.probabilidad}%</span>
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={etapa.activa}
-                        onChange={(e) =>
-                          updateEtapaPipeline(etapa.id, { activa: e.target.checked })
-                        }
-                        className="sr-only peer"
-                      />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                    </label>
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full ${
+                        etapa.activo ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                      }`}
+                    >
+                      {etapa.activo ? 'Activo' : 'Inactivo'}
+                    </span>
                   </td>
                 </tr>
               ))}
@@ -348,8 +304,7 @@ const SeccionPipeline: React.FC = () => {
 
 // Sección de Plantillas
 const SeccionPlantillas: React.FC = () => {
-  const { plantillasPresupuesto, addPlantillaPresupuesto, updatePlantillaPresupuesto, deletePlantillaPresupuesto } =
-    useConfigStore();
+  const { plantillasPresupuesto, deletePlantilla } = useConfigStore();
 
   return (
     <div>
@@ -370,35 +325,24 @@ const SeccionPlantillas: React.FC = () => {
               <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
                 <TemplateIcon />
               </div>
-              <span
-                className={`px-2 py-1 text-xs rounded-full ${
-                  plantilla.activa ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
-                }`}
-              >
-                {plantilla.activa ? 'Activa' : 'Inactiva'}
-              </span>
             </div>
             <h4 className="font-semibold text-gray-900 mb-1">{plantilla.nombre}</h4>
             <p className="text-sm text-gray-500 mb-3">{plantilla.descripcion}</p>
 
             <div className="text-sm text-gray-500 mb-3">
-              <span>{plantilla.secciones.length} secciones</span>
-              <span className="mx-2">•</span>
-              <span>
-                {plantilla.secciones.reduce((sum, s) => sum + s.items.length, 0)} items
-              </span>
+              <span>{plantilla.items.length} items</span>
             </div>
 
-            {/* Preview de secciones */}
+            {/* Preview de items */}
             <div className="space-y-1">
-              {plantilla.secciones.slice(0, 3).map((seccion) => (
-                <div key={seccion.id} className="text-xs text-gray-400">
-                  • {seccion.nombre} ({seccion.items.length} items)
+              {plantilla.items.slice(0, 3).map((item, idx) => (
+                <div key={idx} className="text-xs text-gray-400">
+                  • {item.concepto}
                 </div>
               ))}
-              {plantilla.secciones.length > 3 && (
+              {plantilla.items.length > 3 && (
                 <div className="text-xs text-gray-400">
-                  + {plantilla.secciones.length - 3} más...
+                  + {plantilla.items.length - 3} más...
                 </div>
               )}
             </div>
@@ -407,8 +351,15 @@ const SeccionPlantillas: React.FC = () => {
               <button className="px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-50 rounded-lg">
                 Editar
               </button>
-              <button className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-lg">
-                Duplicar
+              <button 
+                onClick={() => {
+                  if (confirm('¿Eliminar esta plantilla?')) {
+                    deletePlantilla(plantilla.id);
+                  }
+                }}
+                className="px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 rounded-lg"
+              >
+                Eliminar
               </button>
             </div>
           </div>
@@ -420,7 +371,7 @@ const SeccionPlantillas: React.FC = () => {
 
 // Sección General
 const SeccionGeneral: React.FC = () => {
-  const { configuracionGeneral, updateConfiguracionGeneral } = useConfigStore();
+  const { configuracion, updateConfiguracion } = useConfigStore();
 
   return (
     <div>
@@ -438,9 +389,9 @@ const SeccionGeneral: React.FC = () => {
               <label className="block text-sm text-gray-500 mb-1">Nombre de la Empresa</label>
               <input
                 type="text"
-                value={configuracionGeneral.nombre_empresa}
+                value={configuracion.empresa.nombre}
                 onChange={(e) =>
-                  updateConfiguracionGeneral({ nombre_empresa: e.target.value })
+                  updateConfiguracion({ empresa: { ...configuracion.empresa, nombre: e.target.value } })
                 }
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -449,9 +400,9 @@ const SeccionGeneral: React.FC = () => {
               <label className="block text-sm text-gray-500 mb-1">RFC</label>
               <input
                 type="text"
-                value={configuracionGeneral.rfc || ''}
+                value={configuracion.empresa.rfc || ''}
                 onChange={(e) =>
-                  updateConfiguracionGeneral({ rfc: e.target.value })
+                  updateConfiguracion({ empresa: { ...configuracion.empresa, rfc: e.target.value } })
                 }
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -460,9 +411,9 @@ const SeccionGeneral: React.FC = () => {
               <label className="block text-sm text-gray-500 mb-1">Dirección</label>
               <input
                 type="text"
-                value={configuracionGeneral.direccion || ''}
+                value={configuracion.empresa.direccion || ''}
                 onChange={(e) =>
-                  updateConfiguracionGeneral({ direccion: e.target.value })
+                  updateConfiguracion({ empresa: { ...configuracion.empresa, direccion: e.target.value } })
                 }
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -471,9 +422,9 @@ const SeccionGeneral: React.FC = () => {
               <label className="block text-sm text-gray-500 mb-1">Teléfono</label>
               <input
                 type="text"
-                value={configuracionGeneral.telefono || ''}
+                value={configuracion.empresa.telefono || ''}
                 onChange={(e) =>
-                  updateConfiguracionGeneral({ telefono: e.target.value })
+                  updateConfiguracion({ empresa: { ...configuracion.empresa, telefono: e.target.value } })
                 }
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -482,9 +433,9 @@ const SeccionGeneral: React.FC = () => {
               <label className="block text-sm text-gray-500 mb-1">Email</label>
               <input
                 type="email"
-                value={configuracionGeneral.email || ''}
+                value={configuracion.empresa.email || ''}
                 onChange={(e) =>
-                  updateConfiguracionGeneral({ email: e.target.value })
+                  updateConfiguracion({ empresa: { ...configuracion.empresa, email: e.target.value } })
                 }
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -497,25 +448,12 @@ const SeccionGeneral: React.FC = () => {
           <h4 className="font-semibold text-gray-900 mb-4">Configuración de Cotizaciones</h4>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm text-gray-500 mb-1">Moneda</label>
-              <select
-                value={configuracionGeneral.moneda}
-                onChange={(e) =>
-                  updateConfiguracionGeneral({ moneda: e.target.value })
-                }
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="MXN">MXN - Peso Mexicano</option>
-                <option value="USD">USD - Dólar Americano</option>
-              </select>
-            </div>
-            <div>
               <label className="block text-sm text-gray-500 mb-1">IVA (%)</label>
               <input
                 type="number"
-                value={configuracionGeneral.iva_porcentaje}
+                value={configuracion.presupuestos.iva}
                 onChange={(e) =>
-                  updateConfiguracionGeneral({ iva_porcentaje: Number(e.target.value) })
+                  updateConfiguracion({ presupuestos: { ...configuracion.presupuestos, iva: Number(e.target.value) } })
                 }
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -524,20 +462,9 @@ const SeccionGeneral: React.FC = () => {
               <label className="block text-sm text-gray-500 mb-1">Vigencia Presupuestos (días)</label>
               <input
                 type="number"
-                value={configuracionGeneral.vigencia_presupuesto_dias}
+                value={configuracion.presupuestos.vigencia_dias}
                 onChange={(e) =>
-                  updateConfiguracionGeneral({ vigencia_presupuesto_dias: Number(e.target.value) })
-                }
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm text-gray-500 mb-1">Prefijo Folios</label>
-              <input
-                type="text"
-                value={configuracionGeneral.prefijo_folio || ''}
-                onChange={(e) =>
-                  updateConfiguracionGeneral({ prefijo_folio: e.target.value })
+                  updateConfiguracion({ presupuestos: { ...configuracion.presupuestos, vigencia_dias: Number(e.target.value) } })
                 }
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -549,9 +476,9 @@ const SeccionGeneral: React.FC = () => {
         <div className="bg-white rounded-xl border p-6">
           <h4 className="font-semibold text-gray-900 mb-4">Términos y Condiciones</h4>
           <textarea
-            value={configuracionGeneral.terminos_condiciones || ''}
+            value={configuracion.presupuestos.terminos_condiciones || ''}
             onChange={(e) =>
-              updateConfiguracionGeneral({ terminos_condiciones: e.target.value })
+              updateConfiguracion({ presupuestos: { ...configuracion.presupuestos, terminos_condiciones: e.target.value } })
             }
             rows={6}
             className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"

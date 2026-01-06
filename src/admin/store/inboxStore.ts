@@ -406,7 +406,6 @@ export const useInboxStore = create<InboxState>()(
       addMensaje: (mensaje) =>
         set((state) => {
           const newMensaje = { ...mensaje, id: generateId() };
-          const conv = state.conversaciones.find((c) => c.id === mensaje.conversacion_id);
           
           return {
             mensajes: [...state.mensajes, newMensaje],

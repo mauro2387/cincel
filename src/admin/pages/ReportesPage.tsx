@@ -4,9 +4,8 @@
 
 import React, { useState } from 'react';
 import { format, subMonths, startOfMonth, endOfMonth } from 'date-fns';
-import { es } from 'date-fns/locale';
 import { useDashboardStore } from '../store/dashboardStore';
-import { usePipelineStore } from '../store/pipelineStore';
+import { usePipelineStore, PIPELINE_STAGES } from '../store/pipelineStore';
 import { useObrasStore } from '../store/obrasStore';
 
 // Iconos
@@ -159,8 +158,8 @@ const ReporteVentas: React.FC = () => {
               <CashIcon />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Ventas Cerradas</p>
-              <p className="text-xl font-bold">{formatCurrency(kpis.ventas_mes)}</p>
+              <p className="text-sm text-gray-500">Ingresos del Mes</p>
+              <p className="text-xl font-bold">{formatCurrency(kpis.ingresosMes.valor)}</p>
             </div>
           </div>
         </div>
@@ -171,7 +170,7 @@ const ReporteVentas: React.FC = () => {
             </div>
             <div>
               <p className="text-sm text-gray-500">Tasa de Conversión</p>
-              <p className="text-xl font-bold">{kpis.tasa_conversion}%</p>
+              <p className="text-xl font-bold">{kpis.tasaConversion.valor}%</p>
             </div>
           </div>
         </div>
@@ -182,7 +181,7 @@ const ReporteVentas: React.FC = () => {
             </div>
             <div>
               <p className="text-sm text-gray-500">Ticket Promedio</p>
-              <p className="text-xl font-bold">{formatCurrency(kpis.ticket_promedio)}</p>
+              <p className="text-xl font-bold">{formatCurrency(kpis.ticketPromedio.valor)}</p>
             </div>
           </div>
         </div>
@@ -192,8 +191,8 @@ const ReporteVentas: React.FC = () => {
               <CalendarIcon />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Tiempo Cierre Promedio</p>
-              <p className="text-xl font-bold">{kpis.tiempo_cierre_promedio} días</p>
+              <p className="text-sm text-gray-500">Leads Nuevos</p>
+              <p className="text-xl font-bold">{kpis.leadsNuevos.valor}</p>
             </div>
           </div>
         </div>
@@ -205,7 +204,7 @@ const ReporteVentas: React.FC = () => {
         <BarChart
           data={ventasPorMes.map((item, i) => ({
             label: item.mes,
-            value: item.monto,
+            value: item.ventas,
             color: monthColors[i % monthColors.length],
           }))}
           height={250}
@@ -221,22 +220,27 @@ const ReporteVentas: React.FC = () => {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Mes</th>
-              <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Monto</th>
-              <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Acumulado</th>
+              <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Ventas</th>
+              <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Meta</th>
+              <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Cumplimiento</th>
             </tr>
           </thead>
           <tbody className="divide-y">
-            {ventasPorMes.reduce((acc: any[], item, index) => {
-              const acumulado = ventasPorMes.slice(0, index + 1).reduce((sum, i) => sum + i.monto, 0);
-              acc.push(
+            {ventasPorMes.map((item) => {
+              const cumplimiento = item.meta > 0 ? Math.round((item.ventas / item.meta) * 100) : 0;
+              return (
                 <tr key={item.mes}>
                   <td className="px-4 py-3 font-medium">{item.mes}</td>
-                  <td className="px-4 py-3 text-right">{formatCurrency(item.monto)}</td>
-                  <td className="px-4 py-3 text-right text-green-600">{formatCurrency(acumulado)}</td>
+                  <td className="px-4 py-3 text-right">{formatCurrency(item.ventas)}</td>
+                  <td className="px-4 py-3 text-right text-gray-500">{formatCurrency(item.meta)}</td>
+                  <td className="px-4 py-3 text-right">
+                    <span className={`px-2 py-1 text-xs rounded-full ${cumplimiento >= 100 ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                      {cumplimiento}%
+                    </span>
+                  </td>
                 </tr>
               );
-              return acc;
-            }, [])}
+            })}
           </tbody>
         </table>
       </div>
@@ -246,26 +250,31 @@ const ReporteVentas: React.FC = () => {
 
 // Reporte de Pipeline
 const ReportePipeline: React.FC = () => {
-  const { leads, etapas } = usePipelineStore();
+  const { leads } = usePipelineStore();
   const { leadsPorEtapa, leadsPorOrigen } = useDashboardStore();
 
   const etapaColors = ['#3B82F6', '#8B5CF6', '#EC4899', '#F97316', '#22C55E', '#EF4444'];
+
+  // Calcular stats del pipeline
+  const pipelineStats = PIPELINE_STAGES.slice(0, 4).map((etapa) => {
+    const count = leads.filter((l) => l.estado === etapa.id).length;
+    const value = leads
+      .filter((l) => l.estado === etapa.id)
+      .reduce((sum, l) => sum + (l.presupuesto_estimado || 0), 0);
+    return { ...etapa, count, value };
+  });
 
   return (
     <div className="space-y-6">
       {/* Stats del pipeline */}
       <div className="grid grid-cols-4 gap-4">
-        {etapas.slice(0, 4).map((etapa, i) => {
-          const count = leads.filter((l) => l.etapa === etapa.id).length;
-          const value = leads.filter((l) => l.etapa === etapa.id).reduce((sum, l) => sum + l.valor, 0);
-          return (
-            <div key={etapa.id} className="bg-white rounded-xl p-4 border">
-              <p className="text-sm text-gray-500">{etapa.nombre}</p>
-              <p className="text-2xl font-bold text-gray-900">{count} leads</p>
-              <p className="text-sm text-gray-500">{formatCurrency(value)}</p>
-            </div>
-          );
-        })}
+        {pipelineStats.map((etapa) => (
+          <div key={etapa.id} className="bg-white rounded-xl p-4 border">
+            <p className="text-sm text-gray-500">{etapa.label}</p>
+            <p className="text-2xl font-bold text-gray-900">{etapa.count} leads</p>
+            <p className="text-sm text-gray-500">{formatCurrency(etapa.value)}</p>
+          </div>
+        ))}
       </div>
 
       <div className="grid grid-cols-2 gap-6">
@@ -287,7 +296,7 @@ const ReportePipeline: React.FC = () => {
           <div className="space-y-4">
             {leadsPorOrigen.map((item) => {
               const maxCount = Math.max(...leadsPorOrigen.map((o) => o.cantidad));
-              const percentage = (item.cantidad / maxCount) * 100;
+              const percentage = maxCount > 0 ? (item.cantidad / maxCount) * 100 : 0;
               return (
                 <div key={item.origen}>
                   <div className="flex justify-between text-sm mb-1">
@@ -311,13 +320,13 @@ const ReportePipeline: React.FC = () => {
       <div className="bg-white rounded-xl p-6 border">
         <h3 className="text-lg font-semibold text-gray-900 mb-6">Embudo de Conversión</h3>
         <div className="space-y-2">
-          {etapas.map((etapa, index) => {
-            const count = leads.filter((l) => l.etapa === etapa.id).length;
-            const firstCount = leads.filter((l) => l.etapa === etapas[0]?.id).length || 1;
+          {PIPELINE_STAGES.slice(0, 6).map((etapa, index) => {
+            const count = leads.filter((l) => l.estado === etapa.id).length;
+            const firstCount = leads.filter((l) => l.estado === PIPELINE_STAGES[0]?.id).length || 1;
             const width = Math.max((count / firstCount) * 100, 20);
             return (
               <div key={etapa.id} className="flex items-center gap-4">
-                <span className="text-sm text-gray-500 w-32">{etapa.nombre}</span>
+                <span className="text-sm text-gray-500 w-40">{etapa.label}</span>
                 <div className="flex-1 flex items-center gap-2">
                   <div
                     className="h-10 rounded flex items-center justify-center text-white font-medium"
@@ -355,7 +364,7 @@ const ReporteObras: React.FC = () => {
     { estado: 'Cancelada', count: obras.filter((o) => o.estado === 'cancelada').length, color: '#EF4444' },
   ];
 
-  const totalPresupuestado = obras.reduce((sum, o) => sum + o.presupuesto, 0);
+  const totalPresupuestado = obras.reduce((sum, o) => sum + o.presupuesto_total, 0);
   const totalGastado = obras.reduce((sum, o) => sum + o.costo_actual, 0);
   const margen = totalPresupuestado - totalGastado;
 
@@ -398,7 +407,7 @@ const ReporteObras: React.FC = () => {
           />
         </div>
 
-        {/* Progreso promedio */}
+        {/* Progreso de obras */}
         <div className="bg-white rounded-xl p-6 border">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Progreso de Obras</h3>
           <div className="space-y-4">
@@ -409,12 +418,12 @@ const ReporteObras: React.FC = () => {
                 <div key={obra.id}>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-gray-600 truncate max-w-[200px]">{obra.nombre}</span>
-                    <span className="font-medium">{obra.progreso}%</span>
+                    <span className="font-medium">{obra.porcentaje_avance}%</span>
                   </div>
                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-blue-500 rounded-full"
-                      style={{ width: `${obra.progreso}%` }}
+                      style={{ width: `${obra.porcentaje_avance}%` }}
                     />
                   </div>
                 </div>
@@ -445,33 +454,29 @@ const ReporteObras: React.FC = () => {
                 <td className="px-4 py-3">
                   <span className="font-medium">{obra.nombre}</span>
                 </td>
-                <td className="px-4 py-3 text-gray-600">{obra.cliente}</td>
+                <td className="px-4 py-3 text-gray-600">{obra.cliente_nombre}</td>
                 <td className="px-4 py-3">
                   <span
-                    className={`px-2 py-1 text-xs rounded-full ${
-                      obrasPorEstado.find((e) => e.estado.toLowerCase().includes(obra.estado))
-                        ? `bg-opacity-20`
-                        : ''
-                    }`}
+                    className="px-2 py-1 text-xs rounded-full"
                     style={{
-                      backgroundColor: `${obrasPorEstado.find((e) => e.estado.toLowerCase().replace(' ', '_') === obra.estado || e.estado.toLowerCase().replace(' ', '_').includes(obra.estado))?.color}20`,
-                      color: obrasPorEstado.find((e) => e.estado.toLowerCase().replace(' ', '_') === obra.estado || e.estado.toLowerCase().replace(' ', '_').includes(obra.estado))?.color,
+                      backgroundColor: `${obrasPorEstado.find((e) => e.estado.toLowerCase().includes(obra.estado.replace('_', ' ')))?.color}20`,
+                      color: obrasPorEstado.find((e) => e.estado.toLowerCase().includes(obra.estado.replace('_', ' ')))?.color || '#6B7280',
                     }}
                   >
-                    {obra.estado}
+                    {obra.estado.replace('_', ' ')}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-right">{formatCurrency(obra.presupuesto)}</td>
+                <td className="px-4 py-3 text-right">{formatCurrency(obra.presupuesto_total)}</td>
                 <td className="px-4 py-3 text-right">{formatCurrency(obra.costo_actual)}</td>
                 <td className="px-4 py-3 text-right">
                   <div className="flex items-center justify-end gap-2">
                     <div className="w-20 h-2 bg-gray-100 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-blue-500 rounded-full"
-                        style={{ width: `${obra.progreso}%` }}
+                        style={{ width: `${obra.porcentaje_avance}%` }}
                       />
                     </div>
-                    <span className="text-sm">{obra.progreso}%</span>
+                    <span className="text-sm">{obra.porcentaje_avance}%</span>
                   </div>
                 </td>
               </tr>
@@ -487,15 +492,15 @@ const ReporteObras: React.FC = () => {
 const ReporteVendedores: React.FC = () => {
   const { leads } = usePipelineStore();
 
-  // Agrupar por vendedor
+  // Agrupar por responsable
   const vendedorStats = leads.reduce((acc: Record<string, { ventas: number; leads: number; valor: number }>, lead) => {
-    const vendedor = lead.vendedor || 'Sin asignar';
+    const vendedor = lead.responsable_id || 'Sin asignar';
     if (!acc[vendedor]) {
       acc[vendedor] = { ventas: 0, leads: 0, valor: 0 };
     }
     acc[vendedor].leads++;
-    acc[vendedor].valor += lead.valor;
-    if (lead.etapa === 'ganado') {
+    acc[vendedor].valor += lead.presupuesto_estimado || 0;
+    if (lead.estado === 'finalizado') {
       acc[vendedor].ventas++;
     }
     return acc;
@@ -510,12 +515,12 @@ const ReporteVendedores: React.FC = () => {
       {/* Tabla de vendedores */}
       <div className="bg-white rounded-xl border overflow-hidden">
         <div className="p-4 border-b">
-          <h3 className="font-semibold text-gray-900">Rendimiento por Vendedor</h3>
+          <h3 className="font-semibold text-gray-900">Rendimiento por Responsable</h3>
         </div>
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Vendedor</th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Responsable</th>
               <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Leads</th>
               <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Ventas Cerradas</th>
               <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Conversión</th>
@@ -538,7 +543,7 @@ const ReporteVendedores: React.FC = () => {
                 <td className="px-4 py-3 text-right">
                   <span
                     className={`px-2 py-1 text-xs rounded-full ${
-                      (vendedor.ventas / vendedor.leads) * 100 > 20
+                      vendedor.leads > 0 && (vendedor.ventas / vendedor.leads) * 100 > 20
                         ? 'bg-green-100 text-green-700'
                         : 'bg-yellow-100 text-yellow-700'
                     }`}
@@ -555,12 +560,12 @@ const ReporteVendedores: React.FC = () => {
 
       {/* Gráfica comparativa */}
       <div className="bg-white rounded-xl p-6 border">
-        <h3 className="text-lg font-semibold text-gray-900 mb-6">Valor Pipeline por Vendedor</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-6">Valor Pipeline por Responsable</h3>
         <BarChart
-          data={vendedores.slice(0, 6).map((v, i) => ({
+          data={vendedores.slice(0, 6).map((v) => ({
             label: v.nombre.split(' ')[0],
             value: v.valor,
-            color: `bg-blue-${400 + ((i % 3) * 100)}`,
+            color: 'bg-blue-500',
           }))}
           height={200}
         />
