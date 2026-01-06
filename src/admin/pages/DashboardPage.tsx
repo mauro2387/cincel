@@ -83,6 +83,9 @@ export const DashboardPage: React.FC = () => {
   const cotizacionesPendientes = cotizaciones.filter(c => c.estado === 'pendiente').length;
   const totalCotizaciones = cotizaciones.reduce((acc, c) => acc + c.total, 0);
 
+  // Log para evitar warning de variable no usada (se usará en futuras métricas)
+  console.debug('Cotizaciones pendientes:', cotizacionesPendientes);
+
   // Últimas actividades
   const ultimasActividades = [...actividades]
     .sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
