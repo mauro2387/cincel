@@ -7,11 +7,10 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 
 export const LoginPage: React.FC = () => {
-  const { login, isAuthenticated, error, clearError } = useAuthStore();
+  const { login, isAuthenticated, isLoading: authLoading, error, clearError } = useAuthStore();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   if (isAuthenticated) {
     return <Navigate to="/admin" replace />;
@@ -20,13 +19,8 @@ export const LoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     clearError();
-    setIsLoading(true);
 
-    // Simular delay de autenticación
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const success = login(username, password);
-    setIsLoading(false);
+    const success = await login(email, password);
 
     if (success) {
       navigate('/admin');
@@ -56,18 +50,18 @@ export const LoginPage: React.FC = () => {
           )}
 
           <div className="mb-4">
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
-              Usuario
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email
             </label>
             <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors"
-              placeholder="Ingresa tu usuario"
+              placeholder="tu@email.com"
               required
-              autoComplete="username"
+              autoComplete="email"
             />
           </div>
 
@@ -89,10 +83,10 @@ export const LoginPage: React.FC = () => {
 
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={authLoading}
             className="w-full bg-amber-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-amber-700 focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? (
+            {authLoading ? (
               <span className="flex items-center justify-center gap-2">
                 <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
                   <circle
@@ -121,6 +115,13 @@ export const LoginPage: React.FC = () => {
             <a href="/" className="text-sm text-gray-500 hover:text-amber-600">
               ← Volver al sitio
             </a>
+          </div>
+
+          {/* Demo credentials hint */}
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+            <p className="text-xs text-amber-700 text-center">
+              <strong>Demo:</strong> admin@cincel.com / cincel2024
+            </p>
           </div>
         </form>
 

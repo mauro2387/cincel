@@ -21,8 +21,9 @@ import {
   LeadsPage,
   ObrasPage as AdminObrasPage,
   ClientesPage,
-  CotizacionesPage,
 } from './admin';
+import { PipelinePage } from './admin/pages/PipelinePage';
+import { PresupuestosPageV2 } from './admin/pages/PresupuestosPageV2';
 
 function App() {
   return (
@@ -46,10 +47,11 @@ function App() {
         <Route path="/admin/login" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<DashboardPage />} />
+          <Route path="pipeline" element={<PipelinePage />} />
           <Route path="leads" element={<LeadsPage />} />
           <Route path="clientes" element={<ClientesPage />} />
           <Route path="obras" element={<AdminObrasPage />} />
-          <Route path="cotizaciones" element={<CotizacionesPage />} />
+          <Route path="cotizaciones" element={<PresupuestosPageV2 />} />
         </Route>
       </Routes>
 

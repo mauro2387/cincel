@@ -37,6 +37,12 @@ const CotizacionesIcon = () => (
   </svg>
 );
 
+const PipelineIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+  </svg>
+);
+
 const LogoutIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -57,6 +63,7 @@ const CloseIcon = () => (
 
 const menuItems = [
   { path: '/admin', label: 'Dashboard', icon: DashboardIcon, exact: true },
+  { path: '/admin/pipeline', label: 'Pipeline', icon: PipelineIcon },
   { path: '/admin/leads', label: 'Leads', icon: LeadsIcon },
   { path: '/admin/clientes', label: 'Clientes', icon: ClientesIcon },
   { path: '/admin/obras', label: 'Obras', icon: ObrasIcon },
@@ -127,7 +134,7 @@ export const AdminLayout: React.FC = () => {
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium">{user?.name}</p>
+              <p className="text-sm font-medium">{user?.nombre}</p>
               <p className="text-xs text-gray-400">{user?.role}</p>
             </div>
             <button
