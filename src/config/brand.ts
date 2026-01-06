@@ -55,27 +55,37 @@ export const brandConfig = {
     },
   ],
   
-  // Valores de la empresa
+  // Valores de la empresa - Los principios que guían cada obra que realizamos
   values: [
     {
-      id: 'experiencia',
-      title: 'Experiencia Comprobada',
-      description: 'Años de trayectoria en el sector de la construcción',
-    },
-    {
-      id: 'calidad',
-      title: 'Calidad Garantizada',
-      description: 'Materiales de primera calidad y mano de obra especializada',
+      id: 'profesionalismo',
+      title: 'Profesionalismo',
+      description: 'Trabajamos con planificación, criterio técnico y responsabilidad en cada proyecto.',
     },
     {
       id: 'cumplimiento',
-      title: 'Cumplimiento de Plazos',
-      description: 'Respetamos los tiempos acordados y mantenemos comunicación constante',
+      title: 'Cumplimiento',
+      description: 'Respetamos plazos, acuerdos y compromisos. Nuestra palabra tiene valor.',
+    },
+    {
+      id: 'calidad',
+      title: 'Calidad constructiva',
+      description: 'Priorizamos buena ejecución, materiales adecuados y terminaciones prolijas.',
     },
     {
       id: 'transparencia',
-      title: 'Presupuestos Claros',
-      description: 'Sin sorpresas. Cotización gratuita y presupuestos detallados',
+      title: 'Transparencia',
+      description: 'Comunicación clara y honesta durante todo el proceso de obra.',
+    },
+    {
+      id: 'experiencia',
+      title: 'Experiencia',
+      description: 'Aplicamos años de trayectoria para anticipar problemas y ofrecer soluciones eficientes.',
+    },
+    {
+      id: 'confianza',
+      title: 'Confianza',
+      description: 'Construimos relaciones basadas en hechos, resultados y satisfacción real.',
     },
   ],
   
