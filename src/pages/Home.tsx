@@ -418,17 +418,17 @@ export const Home: React.FC = () => {
               <Link
                 key={zone.id}
                 to={zone.id === 'nacional' ? '/contacto' : `/zonas#${zone.id}`}
-                className="bg-cincel-dark p-8 rounded-lg hover:bg-cincel-dark transition-colors group focus:outline-none focus:ring-2 focus:ring-primary"
+                className="bg-white p-8 rounded-lg hover:shadow-lg transition-all group focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <div className="flex justify-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 rounded-full border-2 flex items-center justify-center font-bold text-xl" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     {zone.id === 'montevideo' ? 'M' : zone.id === 'maldonado' ? 'D' : 'UY'}
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors text-center text-white">
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors text-center text-cincel-black">
                   {zone.name}
                 </h3>
-                <p className="text-gray-300 leading-relaxed text-center">
+                <p className="text-cincel-dark leading-relaxed text-center">
                   {zone.description}
                 </p>
               </Link>
