@@ -28,6 +28,7 @@ import { TareasPage } from './admin/pages/TareasPage';
 import { ClientesPageV2 } from './admin/pages/ClientesPageV2';
 import { ReportesPage } from './admin/pages/ReportesPage';
 import { ConfiguracionPage } from './admin/pages/ConfiguracionPage';
+import { IntegracionesPage } from './admin/pages/IntegracionesPage';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
           <Route path="tareas" element={<TareasPage />} />
           <Route path="reportes" element={<ReportesPage />} />
           <Route path="configuracion" element={<ConfiguracionPage />} />
+          <Route path="integraciones" element={<IntegracionesPage />} />
         </Route>
       </Routes>
 
