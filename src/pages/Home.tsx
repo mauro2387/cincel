@@ -328,7 +328,7 @@ export const Home: React.FC = () => {
               </div>
               <h3 className="text-lg font-bold text-cincel-black mb-2">Entrega</h3>
               <p className="text-cincel-dark text-sm">
-                Recibís tu obra terminada en el plazo acordado, con garantía y documentación completa.
+                Recibís tu obra terminada en el plazo acordado y con la mejor garantía.
               </p>
             </div>
           </div>
