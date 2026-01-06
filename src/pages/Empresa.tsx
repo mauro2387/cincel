@@ -288,16 +288,6 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <DocumentIcon style={{ color: '#c08826' }} size={64} />
-                </div>
-                <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Certificaciones Técnicas</h3>
-                <p className="text-cincel-dark leading-relaxed text-center">
-                  Instalaciones eléctricas, sanitarias y de gas realizadas por profesionales matriculados.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg">
-                <div className="flex justify-center mb-4">
                   <ClockIcon style={{ color: '#c08826' }} size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Cumplimiento de Plazos</h3>
