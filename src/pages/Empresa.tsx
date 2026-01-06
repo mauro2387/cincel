@@ -47,21 +47,23 @@ export const Empresa: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
               <div>
                 <h2 className="text-3xl font-bold text-cincel-black mb-6">
-                  Experiencia que Construye Confianza
+                  Experiencia que construye confianza
                 </h2>
                 <div className="space-y-4 text-cincel-dark leading-relaxed">
                   <p>
                     <strong className="text-cincel-black">Cincel Construcciones</strong> es una empresa constructora 
-                    establecida en Uruguay con años de experiencia en el sector. Comenzamos con proyectos residenciales 
-                    en Montevideo y hoy atendemos obras de todo tipo en todo el país.
+                    uruguaya con experiencia real en obras y reformas, enfocada en trabajar con seriedad, compromiso y 
+                    atención al detalle. Comenzamos desarrollando proyectos residenciales en Montevideo y hoy acompañamos 
+                    obras de distinta escala en diferentes puntos del país.
                   </p>
                   <p>
-                    Nuestro equipo está formado por profesionales capacitados: maestros mayores de obra, 
-                    electricistas, plomeros, pintores y personal de apoyo con experiencia comprobada.
+                    Contamos con mano de obra calificada y experiencia en distintos rubros de la construcción, lo que nos 
+                    permite adaptarnos a cada proyecto y ejecutar las obras de forma responsable.
                   </p>
                   <p>
-                    Trabajamos con <strong className="text-cincel-black">transparencia total</strong>: 
-                    presupuestos detallados, plazos realistas y comunicación permanente con cada cliente.
+                    Trabajamos con <strong className="text-cincel-black">transparencia y comunicación constante</strong>, 
+                    ofreciendo estimaciones claras y plazos realistas, para que cada cliente tenga la tranquilidad de saber 
+                    cómo y cuándo se ejecuta su obra.
                   </p>
                 </div>
               </div>
