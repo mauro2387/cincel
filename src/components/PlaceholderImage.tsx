@@ -3,6 +3,8 @@
  * Crea imágenes visuales con patrones hasta que se agreguen fotos reales
  */
 
+import React from 'react';
+
 interface PlaceholderImageProps {
   type: 'construction' | 'building' | 'renovation' | 'team' | 'process' | 'blueprint';
   className?: string;
