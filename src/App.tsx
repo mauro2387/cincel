@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Layout } from './components/Layout';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Home } from './pages/Home';
@@ -11,11 +13,23 @@ import { Zonas } from './pages/Zonas';
 import { Contacto } from './pages/Contacto';
 import { Cotizar } from './pages/Cotizar';
 
+// Admin
+import {
+  AdminLayout,
+  LoginPage,
+  DashboardPage,
+  LeadsPage,
+  ObrasPage as AdminObrasPage,
+  ClientesPage,
+  CotizacionesPage,
+} from './admin';
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="empresa" element={<Empresa />} />
@@ -27,7 +41,21 @@ function App() {
           <Route path="contacto" element={<Contacto />} />
           <Route path="cotizar" element={<Cotizar />} />
         </Route>
+
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="leads" element={<LeadsPage />} />
+          <Route path="clientes" element={<ClientesPage />} />
+          <Route path="obras" element={<AdminObrasPage />} />
+          <Route path="cotizaciones" element={<CotizacionesPage />} />
+        </Route>
       </Routes>
+
+      {/* Vercel Analytics & Speed Insights */}
+      <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   );
 }
