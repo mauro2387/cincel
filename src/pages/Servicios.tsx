@@ -61,18 +61,18 @@ export const Servicios: React.FC = () => {
                 <Link
                   key={service.slug}
                   to={`/servicios/${service.slug}`}
-                  className="card p-6 group focus:outline-none focus:ring-2 focus:ring-cincel-gold"
+                  className="card p-6 group focus:outline-none focus:ring-2 focus:ring-primary"
                   onClick={() => trackServiceClick(service.slug, service.title)}
                 >
                   <div className="mb-4 flex justify-center">
-                    <IconComponent className="text-cincel-gold" size={64} />
+                    <IconComponent className="text-primary" size={64} />
                   </div>
                   
-                  <h2 className="text-2xl font-bold text-cincel-black mb-3 group-hover:text-cincel-gold transition-colors">
+                  <h2 className="text-2xl font-bold text-cincel-black mb-3 group-hover:text-primary transition-colors">
                     {service.title}
                   </h2>
                   
-                  <p className="text-cincel-gray mb-6 leading-relaxed">
+                  <p className="text-cincel-dark mb-6 leading-relaxed">
                     {service.shortDescription}
                   </p>
 
@@ -80,8 +80,8 @@ export const Servicios: React.FC = () => {
                     <p className="text-sm font-semibold text-cincel-black">Incluye:</p>
                     <ul className="space-y-1">
                       {service.scope.slice(0, 3).map((item, index) => (
-                        <li key={index} className="text-sm text-cincel-gray flex items-start gap-2">
-                          <span className="text-cincel-gold mt-1">•</span>
+                        <li key={index} className="text-sm text-cincel-dark flex items-start gap-2">
+                          <span className="text-primary mt-1">•</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -99,13 +99,13 @@ export const Servicios: React.FC = () => {
       </section>
 
       {/* CTA */}
-      <section className="section bg-cincel-gold">
+      <section className="section bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               ¿No estás seguro qué servicio necesitás?
             </h2>
-            <p className="text-xl text-cincel-black mb-8">
+            <p className="text-xl text-white mb-8">
               Contanos tu proyecto y te asesoramos sin compromiso
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

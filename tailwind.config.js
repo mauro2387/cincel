@@ -7,25 +7,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold: {
-          DEFAULT: '#D4AF37',
-          50: '#F9F6EE',
-          100: '#F3EDDC',
-          200: '#EBE0C4',
-          300: '#E3D3AC',
-          400: '#DBC693',
-          500: '#D4AF37',
-          600: '#B8952E',
-          700: '#8F7323',
-          800: '#665218',
-          900: '#3D310E',
+        primary: {
+          DEFAULT: '#c08826', // Dorado corporativo
+          50: '#FEF7E8',
+          100: '#FDEFD1',
+          200: '#FBDFA3',
+          300: '#F9CF75',
+          400: '#F7BF47',
+          500: '#c08826',
+          600: '#9A6D1F',
+          700: '#735217',
+          800: '#4D3710',
+          900: '#261B08',
         },
         cincel: {
-          gold: '#D4AF37',
-          black: '#1A1A1A',
-          darkgray: '#2D2D2D',
-          gray: '#6B6B6B',
-          lightgray: '#F5F5F5',
+          primary: '#c08826',    // Dorado corporativo
+          dark: '#373535',       // Gris oscuro
+          blue: '#183950',       // Azul oscuro
+          brown: '#342f1f',      // Marrón oscuro
+          navy: '#132531',       // Azul marino
+          gold: '#5a4e24',       // Dorado/marrón
+          black: '#000000',      // Negro
+          white: '#ffffff',      // Blanco
         }
       },
       fontFamily: {

@@ -11,6 +11,18 @@ export const brandConfig = {
   tagline: 'Cimentamos tu futuro',
   legalName: 'Cincel Construcciones',
   
+  // Colores corporativos
+  colors: {
+    primary: '#c08826',    // Dorado corporativo - color principal
+    dark: '#373535',       // Gris oscuro
+    blue: '#183950',       // Azul oscuro
+    brown: '#342f1f',      // Marrón oscuro
+    navy: '#132531',       // Azul marino
+    gold: '#5a4e24',       // Dorado/marrón
+    black: '#000000',      // Negro
+    white: '#ffffff',      // Blanco
+  },
+  
   // Contacto
   whatsappNumber: '59899123456', // Formato: código país + número (sin espacios ni guiones)
   whatsappNumberDisplay: '+598 99 123 456', // Formato para mostrar

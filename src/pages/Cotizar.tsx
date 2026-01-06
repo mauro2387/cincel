@@ -19,11 +19,12 @@ export const Cotizar: React.FC = () => {
     ciudadZona: '',
     urgencia: '',
     presupuesto: '',
+    detalles: '',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     if (errors[name]) {
@@ -65,8 +66,24 @@ export const Cotizar: React.FC = () => {
     setStep(prev => Math.max(prev - 1, 1));
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Prevenir envío del formulario con Enter en pasos anteriores al 4
+    if (e.key === 'Enter' && step < 4) {
+      e.preventDefault();
+    }
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    // CRÍTICO: Solo abrir WhatsApp si estamos en el paso 4
+    if (step !== 4) {
+      console.log('Bloqueando submit - Paso actual:', step);
+      return;
+    }
+
+    console.log('Enviando a WhatsApp - Paso 4 confirmado');
 
     trackQuoteSubmit({
       serviceType: formData.tipoProyecto,
@@ -86,7 +103,7 @@ export const Cotizar: React.FC = () => {
 *Urgencia:* ${formData.urgencia || 'No especificada'}
 *Presupuesto Estimado:* ${formData.presupuesto || 'No especificado'}
 
-Solicito cotización para este proyecto.
+${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}Solicito cotización para este proyecto.
     `.trim();
 
     const link = generateWhatsAppLink(message);
@@ -108,7 +125,7 @@ Solicito cotización para este proyecto.
       <section className="bg-cincel-black text-white py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block bg-cincel-gold text-cincel-black px-6 py-2 rounded-full font-bold text-base mb-4">
+            <div className="inline-block bg-primary text-white px-6 py-2 rounded-full font-bold text-base mb-4">
               ✓ Cotización 100% Gratuita y Sin Compromiso
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -127,22 +144,22 @@ Solicito cotización para este proyecto.
             {/* Barra de progreso */}
             <div className="mb-8">
               <div className="flex justify-between mb-2">
-                <span className="text-sm font-medium text-cincel-gray">
+                <span className="text-sm font-medium text-cincel-dark">
                   Paso {step} de {totalSteps}
                 </span>
-                <span className="text-sm font-medium text-cincel-gold">
+                <span className="text-sm font-medium text-primary">
                   {Math.round(progress)}%
                 </span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
-                  className="bg-cincel-gold h-2 rounded-full transition-all duration-300"
+                  className="bg-primary h-2 rounded-full transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="space-y-6">
               {/* Paso 1: Datos de contacto */}
               {step === 1 && (
                 <div className="animate-fadeIn">
@@ -196,8 +213,8 @@ Solicito cotización para este proyecto.
                         key={service.slug}
                         className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                           formData.tipoProyecto === service.title
-                            ? 'border-cincel-gold bg-gold-50'
-                            : 'border-gray-200 hover:border-cincel-gold'
+                            ? 'border-primary bg-red-50'
+                            : 'border-gray-200 hover:border-primary'
                         }`}
                       >
                         <input
@@ -210,7 +227,7 @@ Solicito cotización para este proyecto.
                         />
                         <div>
                           <span className="font-semibold text-cincel-black">{service.title}</span>
-                          <p className="text-sm text-cincel-gray">{service.shortDescription}</p>
+                          <p className="text-sm text-cincel-dark">{service.shortDescription}</p>
                         </div>
                       </label>
                     ))}
@@ -325,30 +342,47 @@ Solicito cotización para este proyecto.
                         <option value="No lo sé">No lo sé</option>
                       </select>
                     </div>
+                    <div>
+                      <label htmlFor="detalles" className="block text-sm font-semibold text-cincel-black mb-2">
+                        Descripción del Proyecto
+                      </label>
+                      <textarea
+                        id="detalles"
+                        name="detalles"
+                        value={formData.detalles}
+                        onChange={handleChange}
+                        rows={5}
+                        className="input-field resize-none"
+                        placeholder="Ej: Necesito construir una casa de 120 m² con 3 dormitorios, 2 baños, cocina y living. Tengo el terreno y los planos."
+                      />
+                      <p className="text-xs text-cincel-dark mt-1">
+                        Cuéntanos más sobre tu proyecto: dimensiones, materiales, plazos, o cualquier detalle que consideres importante.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="bg-cincel-lightgray p-6 rounded-lg mt-6">
                     <h3 className="font-bold text-cincel-black mb-3">Resumen de tu solicitud:</h3>
                     <dl className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <dt className="text-cincel-gray">Nombre:</dt>
+                        <dt className="text-cincel-dark">Nombre:</dt>
                         <dd className="font-semibold text-cincel-black">{formData.nombre}</dd>
                       </div>
                       <div className="flex justify-between">
-                        <dt className="text-cincel-gray">Teléfono:</dt>
+                        <dt className="text-cincel-dark">Teléfono:</dt>
                         <dd className="font-semibold text-cincel-black">{formData.telefono}</dd>
                       </div>
                       <div className="flex justify-between">
-                        <dt className="text-cincel-gray">Proyecto:</dt>
+                        <dt className="text-cincel-dark">Proyecto:</dt>
                         <dd className="font-semibold text-cincel-black">{formData.tipoProyecto}</dd>
                       </div>
                       <div className="flex justify-between">
-                        <dt className="text-cincel-gray">Departamento:</dt>
+                        <dt className="text-cincel-dark">Departamento:</dt>
                         <dd className="font-semibold text-cincel-black">{formData.departamento}</dd>
                       </div>
                       {formData.ciudadZona && (
                         <div className="flex justify-between">
-                          <dt className="text-cincel-gray">Ciudad/Zona:</dt>
+                          <dt className="text-cincel-dark">Ciudad/Zona:</dt>
                           <dd className="font-semibold text-cincel-black">{formData.ciudadZona}</dd>
                         </div>
                       )}
@@ -368,7 +402,7 @@ Solicito cotización para este proyecto.
                     ← Anterior
                   </button>
                 )}
-                {step < totalSteps ? (
+                {step < totalSteps && (
                   <button
                     type="button"
                     onClick={nextStep}
@@ -376,7 +410,8 @@ Solicito cotización para este proyecto.
                   >
                     Siguiente →
                   </button>
-                ) : (
+                )}
+                {step === totalSteps && (
                   <button
                     type="submit"
                     className="btn-primary flex-1"
@@ -387,7 +422,7 @@ Solicito cotización para este proyecto.
               </div>
 
               {step === totalSteps && (
-                <p className="text-sm text-cincel-gray text-center">
+                <p className="text-sm text-cincel-dark text-center">
                   Al enviar, serás redirigido a WhatsApp con tu solicitud completa
                 </p>
               )}
@@ -395,7 +430,7 @@ Solicito cotización para este proyecto.
 
             {/* Link alternativo */}
             <div className="mt-8 text-center">
-              <p className="text-sm text-cincel-gray mb-2">¿Preferís el formulario completo?</p>
+              <p className="text-sm text-cincel-dark mb-2">¿Preferís el formulario completo?</p>
               <Link to="/contacto" className="link-gold font-semibold">
                 Ir al formulario de contacto →
               </Link>

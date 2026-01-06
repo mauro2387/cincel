@@ -34,17 +34,17 @@ export const Zonas: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-cincel-gold rounded-full flex items-center justify-center text-white font-bold text-2xl">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl">
                 M
               </div>
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-cincel-black">Montevideo</h2>
-                <p className="text-cincel-gray">Área metropolitana completa</p>
+                <p className="text-cincel-dark">Área metropolitana completa</p>
               </div>
             </div>
 
             <div className="space-y-6">
-              <p className="text-lg text-cincel-gray leading-relaxed">
+              <p className="text-lg text-cincel-dark leading-relaxed">
                 Atendemos todas las zonas de Montevideo y área metropolitana. Desde el Centro hasta
                 las zonas residenciales costeras (Carrasco, Pocitos, Malvín, Buceo) y zonas residenciales
                 del interior (Tres Cruces, Cordón, Parque Rodó, entre otras).
@@ -53,7 +53,7 @@ export const Zonas: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-cincel-lightgray p-6 rounded-lg">
                   <h3 className="font-bold text-cincel-black mb-3">Servicios Disponibles</h3>
-                  <ul className="space-y-2 text-sm text-cincel-gray">
+                  <ul className="space-y-2 text-sm text-cincel-dark">
                     <li>• Obra nueva completa</li>
                     <li>• Reformas integrales y parciales</li>
                     <li>• Mantenimiento edilicio</li>
@@ -65,7 +65,7 @@ export const Zonas: React.FC = () => {
 
                 <div className="bg-cincel-lightgray p-6 rounded-lg">
                   <h3 className="font-bold text-cincel-black mb-3">Zonas Principales</h3>
-                  <ul className="space-y-2 text-sm text-cincel-gray">
+                  <ul className="space-y-2 text-sm text-cincel-dark">
                     <li>• Centro y Ciudad Vieja</li>
                     <li>• Pocitos, Buceo, Malvín, Carrasco</li>
                     <li>• Punta Carretas, Parque Rodó</li>
@@ -76,8 +76,8 @@ export const Zonas: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-cincel-gold bg-opacity-10 border-l-4 border-cincel-gold p-6 rounded">
-                <p className="text-cincel-gray">
+              <div className="bg-primary bg-opacity-10 border-l-4 border-primary p-6 rounded">
+                <p className="text-cincel-dark">
                   <strong className="text-cincel-black">Cobertura total:</strong> Trabajamos en toda el área metropolitana.
                   Si tu proyecto está en Canelones o San José (áreas cercanas), consultanos disponibilidad.
                 </p>
@@ -92,17 +92,17 @@ export const Zonas: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-cincel-gold rounded-full flex items-center justify-center text-white font-bold text-2xl">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl">
                 D
               </div>
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-cincel-black">Maldonado</h2>
-                <p className="text-cincel-gray">Punta del Este y toda la zona</p>
+                <p className="text-cincel-dark">Punta del Este y toda la zona</p>
               </div>
             </div>
 
             <div className="space-y-6">
-              <p className="text-lg text-cincel-gray leading-relaxed">
+              <p className="text-lg text-cincel-dark leading-relaxed">
                 Atendemos proyectos en Punta del Este, Maldonado ciudad, La Barra, José Ignacio,
                 Piriápolis y zonas aledañas. Experiencia en construcción y reformas en zona costera
                 con materiales apropiados para ambiente marítimo.
@@ -111,7 +111,7 @@ export const Zonas: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-white p-6 rounded-lg">
                   <h3 className="font-bold text-cincel-black mb-3">Servicios Disponibles</h3>
-                  <ul className="space-y-2 text-sm text-cincel-gray">
+                  <ul className="space-y-2 text-sm text-cincel-dark">
                     <li>• Construcción de casas de playa</li>
                     <li>• Reformas en zona costera</li>
                     <li>• Mantenimiento de propiedades</li>
@@ -122,7 +122,7 @@ export const Zonas: React.FC = () => {
 
                 <div className="bg-white p-6 rounded-lg">
                   <h3 className="font-bold text-cincel-black mb-3">Zonas Principales</h3>
-                  <ul className="space-y-2 text-sm text-cincel-gray">
+                  <ul className="space-y-2 text-sm text-cincel-dark">
                     <li>• Punta del Este</li>
                     <li>• La Barra</li>
                     <li>• José Ignacio</li>
@@ -133,8 +133,8 @@ export const Zonas: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-cincel-gold bg-opacity-10 border-l-4 border-cincel-gold p-6 rounded">
-                <p className="text-cincel-gray">
+              <div className="bg-primary bg-opacity-10 border-l-4 border-primary p-6 rounded">
+                <p className="text-cincel-dark">
                   <strong className="text-cincel-black">Especialización costera:</strong> Conocemos los desafíos
                   de construir en zona de playa: humedad, salitre, vientos. Usamos materiales y técnicas
                   apropiadas para garantizar durabilidad.

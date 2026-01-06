@@ -85,7 +85,7 @@ export const Obras: React.FC = () => {
                 <Link
                   key={project.slug}
                   to={`/obras/${project.slug}`}
-                  className="card overflow-hidden group focus:outline-none focus:ring-2 focus:ring-cincel-gold"
+                  className="card overflow-hidden group focus:outline-none focus:ring-2 focus:ring-primary"
                   onClick={() => trackProjectClick(project.slug, project.title)}
                 >
                   {/* Placeholder para imagen */}
@@ -97,27 +97,27 @@ export const Obras: React.FC = () => {
                   
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-3 text-sm">
-                      <span className="px-2 py-1 bg-cincel-gold text-white rounded text-xs font-medium">
+                      <span className="px-2 py-1 bg-primary text-white rounded text-xs font-medium">
                         {project.city}
                       </span>
                       {project.neighborhood && (
-                        <span className="text-xs text-cincel-gray">• {project.neighborhood}</span>
+                        <span className="text-xs text-cincel-dark">• {project.neighborhood}</span>
                       )}
                     </div>
                     
-                    <h2 className="text-xl font-bold text-cincel-black mb-2 group-hover:text-cincel-gold transition-colors">
+                    <h2 className="text-xl font-bold text-cincel-black mb-2 group-hover:text-primary transition-colors">
                       {project.title}
                     </h2>
                     
-                    <p className="text-sm text-cincel-gray mb-4">
+                    <p className="text-sm text-cincel-dark mb-4">
                       {project.shortDescription}
                     </p>
 
                     {project.surface && (
-                      <p className="text-xs text-cincel-gray mb-2">📐 {project.surface}</p>
+                      <p className="text-xs text-cincel-dark mb-2">📐 {project.surface}</p>
                     )}
                     {project.duration && (
-                      <p className="text-xs text-cincel-gray mb-4">⏱️ {project.duration}</p>
+                      <p className="text-xs text-cincel-dark mb-4">⏱️ {project.duration}</p>
                     )}
                     
                     <span className="link-gold font-medium text-sm">
@@ -129,14 +129,14 @@ export const Obras: React.FC = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-xl text-cincel-gray">No hay proyectos con estos filtros</p>
+              <p className="text-xl text-cincel-dark">No hay proyectos con estos filtros</p>
             </div>
           )}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section bg-cincel-gold">
+      <section className="section bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

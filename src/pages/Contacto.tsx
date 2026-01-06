@@ -126,7 +126,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
       <section className="bg-cincel-black text-white py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block bg-cincel-gold text-cincel-black px-6 py-2 rounded-full font-bold text-base mb-4">
+            <div className="inline-block bg-primary text-white px-6 py-2 rounded-full font-bold text-base mb-4">
               ✓ Cotización 100% Gratuita
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -337,7 +337,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                     {isSubmitting ? 'Enviando...' : 'Enviar Consulta por WhatsApp'}
                   </button>
 
-                  <p className="text-sm text-cincel-gray text-center">
+                  <p className="text-sm text-cincel-dark text-center">
                     Al enviar, serás redirigido a WhatsApp con tu consulta completa
                   </p>
                 </form>
@@ -350,19 +350,19 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                     <h3 className="font-bold text-cincel-black mb-4">Información de Contacto</h3>
                     <div className="space-y-4">
                       <div>
-                        <p className="text-sm text-cincel-gray mb-1">WhatsApp</p>
+                        <p className="text-sm text-cincel-dark mb-1">WhatsApp</p>
                         <a href={`https://wa.me/${brandConfig.whatsappNumber}`} className="link-gold font-semibold">
                           {brandConfig.whatsappNumberDisplay}
                         </a>
                       </div>
                       <div>
-                        <p className="text-sm text-cincel-gray mb-1">Email</p>
+                        <p className="text-sm text-cincel-dark mb-1">Email</p>
                         <a href={`mailto:${brandConfig.email}`} className="link-gold font-semibold">
                           {brandConfig.email}
                         </a>
                       </div>
                       <div>
-                        <p className="text-sm text-cincel-gray mb-2">Horarios</p>
+                        <p className="text-sm text-cincel-dark mb-2">Horarios</p>
                         <p className="text-xs text-cincel-black">{brandConfig.businessHours.weekdays}</p>
                         <p className="text-xs text-cincel-black">{brandConfig.businessHours.saturday}</p>
                       </div>
@@ -371,7 +371,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
 
                   <div className="bg-cincel-lightgray p-6 rounded-lg">
                     <h4 className="font-bold text-cincel-black mb-3">Respuesta en 48hs</h4>
-                    <p className="text-sm text-cincel-gray">
+                    <p className="text-sm text-cincel-dark">
                       Respondemos todas las consultas en menos de 48 horas hábiles
                     </p>
                   </div>

@@ -8,10 +8,14 @@
 }
 
 :root {
-  --cincel-gold: #D4AF37;
-  --cincel-black: #1A1A1A;
-  --cincel-darkgray: #2D2D2D;
-  --cincel-gray: #6B6B6B;
+  --cincel-primary: #c08826;
+  --cincel-dark: #373535;
+  --cincel-blue: #183950;
+  --cincel-brown: #342f1f;
+  --cincel-navy: #132531;
+  --cincel-gold: #5a4e24;
+  --cincel-black: #000000;
+  --cincel-white: #ffffff;
   --cincel-lightgray: #F5F5F5;
 }
 
@@ -20,7 +24,7 @@ body {
   padding: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: white;
-  color: #1A1A1A;
+  color: #000000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,7 +35,7 @@ html {
 
 /* Clases de utilidad personalizadas */
 .btn-primary {
-  background-color: #D4AF37;
+  background-color: #c08826;
   color: white;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
@@ -45,11 +49,11 @@ html {
 }
 
 .btn-primary:hover {
-  background-color: #B8952E;
+  background-color: #9A6D1F;
 }
 
 .btn-primary:focus {
-  outline: 2px solid #D4AF37;
+  outline: 2px solid #c08826;
   outline-offset: 2px;
 }
 
@@ -59,7 +63,7 @@ html {
 }
 
 .btn-secondary {
-  background-color: #1A1A1A;
+  background-color: #183950;
   color: white;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
@@ -73,17 +77,17 @@ html {
 }
 
 .btn-secondary:hover {
-  background-color: #2D2D2D;
+  background-color: #132531;
 }
 
 .btn-secondary:focus {
-  outline: 2px solid #1A1A1A;
+  outline: 2px solid #000000;
   outline-offset: 2px;
 }
 
 .btn-outline {
-  border: 2px solid #D4AF37;
-  color: #D4AF37;
+  border: 2px solid #c08826;
+  color: #c08826;
   background-color: transparent;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
@@ -96,12 +100,12 @@ html {
 }
 
 .btn-outline:hover {
-  background-color: #D4AF37;
+  background-color: #c08826;
   color: white;
 }
 
 .btn-outline:focus {
-  outline: 2px solid #D4AF37;
+  outline: 2px solid #c08826;
   outline-offset: 2px;
 }
 
@@ -122,13 +126,13 @@ html {
   padding: 0.5rem 1rem;
   border: 1px solid #D1D5DB;
   border-radius: 0.375rem;
-  color: #1A1A1A;
+  color: #000000;
   font-size: 1rem;
 }
 
 .input-field:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #D4AF37;
+  box-shadow: 0 0 0 2px #c08826;
   border-color: transparent;
 }
 
@@ -160,7 +164,7 @@ html {
 .section-title {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #1A1A1A;
+  color: #000000;
   margin-bottom: 1rem;
 }
 
@@ -172,7 +176,7 @@ html {
 
 .section-subtitle {
   font-size: 1.125rem;
-  color: #6B6B6B;
+  color: #373535;
   margin-bottom: 2rem;
 }
 
@@ -184,7 +188,7 @@ html {
 
 .divider-gold {
   height: 1px;
-  background: linear-gradient(to right, transparent, #D4AF37, transparent);
+  background: linear-gradient(to right, transparent, #c08826, transparent);
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -195,21 +199,21 @@ html {
   justify-content: center;
   width: 4rem;
   height: 4rem;
-  border: 2px solid #D4AF37;
+  border: 2px solid #c08826;
   border-radius: 9999px;
   background-color: white;
-  color: #D4AF37;
+  color: #c08826;
   font-weight: 700;
 }
 
 .link-gold {
-  color: #D4AF37;
+  color: #c08826;
   transition: color 0.2s;
   text-decoration: none;
 }
 
 .link-gold:hover {
-  color: #8F7323;
+  color: #9A6D1F;
 }
 
 .link-gold:focus {
@@ -222,42 +226,62 @@ html {
 }
 
 /* Clases de color personalizadas para Cincel */
+.bg-cincel-primary {
+  background-color: #c08826 !important;
+}
+
 .bg-cincel-gold {
-  background-color: #D4AF37 !important;
+  background-color: #5a4e24 !important;
 }
 
 .bg-cincel-black {
-  background-color: #1A1A1A !important;
+  background-color: #183950 !important;
 }
 
-.bg-cincel-darkgray {
-  background-color: #2D2D2D !important;
+.bg-cincel-dark {
+  background-color: #373535 !important;
 }
 
-.bg-cincel-gray {
-  background-color: #6B6B6B !important;
+.bg-cincel-blue {
+  background-color: #183950 !important;
+}
+
+.bg-cincel-navy {
+  background-color: #132531 !important;
 }
 
 .bg-cincel-lightgray {
   background-color: #F5F5F5 !important;
 }
 
+.text-cincel-primary {
+  color: #c08826 !important;
+}
+
 .text-cincel-gold {
-  color: #D4AF37 !important;
+  color: #5a4e24 !important;
 }
 
 .text-cincel-black {
-  color: #1A1A1A !important;
+  color: #000000 !important;
+}
+
+.text-cincel-dark {
+  color: #373535 !important;
 }
 
 .text-cincel-gray {
-  color: #6B6B6B !important;
+  color: #373535 !important;
+}
+
+.border-cincel-primary {
+  border-color: #c08826 !important;
 }
 
 .border-cincel-gold {
-  border-color: #D4AF37 !important;
+  border-color: #5a4e24 !important;
 }
 
 .border-cincel-black {
-  border-color: #1A1A1A !important;
+  border-color: #000000 !important;
 }

@@ -45,7 +45,7 @@ export const ObraDetalle: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <Link
               to="/obras"
-              className="inline-flex items-center gap-2 text-cincel-gold hover:text-gold-400 mb-6 focus:outline-none focus:underline"
+              className="inline-flex items-center gap-2 text-primary hover:text-gold-400 mb-6 focus:outline-none focus:underline"
             >
               ← Volver a obras
             </Link>
@@ -55,7 +55,7 @@ export const ObraDetalle: React.FC = () => {
             </h1>
             
             <div className="flex flex-wrap items-center gap-4">
-              <span className="px-3 py-1 bg-cincel-gold text-white rounded font-medium">
+              <span className="px-3 py-1 bg-primary text-white rounded font-medium">
                 {typeLabels[project.type]}
               </span>
               <span className="text-gray-300">📍 {project.city}</span>
@@ -89,7 +89,7 @@ export const ObraDetalle: React.FC = () => {
                   <h2 className="text-2xl font-bold text-cincel-black mb-4">
                     Descripción del Proyecto
                   </h2>
-                  <p className="text-cincel-gray text-lg leading-relaxed">
+                  <p className="text-cincel-dark text-lg leading-relaxed">
                     {project.fullDescription}
                   </p>
                 </div>
@@ -102,10 +102,10 @@ export const ObraDetalle: React.FC = () => {
                   <ul className="space-y-3">
                     {project.workDone.map((work, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <span className="w-6 h-6 bg-cincel-gold rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5">
+                        <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5">
                           ✓
                         </span>
-                        <span className="text-cincel-gray leading-relaxed">{work}</span>
+                        <span className="text-cincel-dark leading-relaxed">{work}</span>
                       </li>
                     ))}
                   </ul>
@@ -120,11 +120,11 @@ export const ObraDetalle: React.FC = () => {
                     <h3 className="font-bold text-cincel-black mb-4">Detalles del Proyecto</h3>
                     <dl className="space-y-3">
                       <div>
-                        <dt className="text-sm text-cincel-gray">Tipo</dt>
+                        <dt className="text-sm text-cincel-dark">Tipo</dt>
                         <dd className="font-semibold text-cincel-black">{typeLabels[project.type]}</dd>
                       </div>
                       <div>
-                        <dt className="text-sm text-cincel-gray">Ubicación</dt>
+                        <dt className="text-sm text-cincel-dark">Ubicación</dt>
                         <dd className="font-semibold text-cincel-black">
                           {project.city}
                           {project.neighborhood && `, ${project.neighborhood}`}
@@ -132,13 +132,13 @@ export const ObraDetalle: React.FC = () => {
                       </div>
                       {project.surface && (
                         <div>
-                          <dt className="text-sm text-cincel-gray">Superficie</dt>
+                          <dt className="text-sm text-cincel-dark">Superficie</dt>
                           <dd className="font-semibold text-cincel-black">{project.surface}</dd>
                         </div>
                       )}
                       {project.duration && (
                         <div>
-                          <dt className="text-sm text-cincel-gray">Duración</dt>
+                          <dt className="text-sm text-cincel-dark">Duración</dt>
                           <dd className="font-semibold text-cincel-black">{project.duration}</dd>
                         </div>
                       )}
@@ -150,7 +150,7 @@ export const ObraDetalle: React.FC = () => {
                     <h3 className="font-bold text-cincel-black mb-3">
                       ¿Te interesa un proyecto similar?
                     </h3>
-                    <p className="text-sm text-cincel-gray mb-4">
+                    <p className="text-sm text-cincel-dark mb-4">
                       Consultanos sin compromiso
                     </p>
                     <div className="space-y-3">

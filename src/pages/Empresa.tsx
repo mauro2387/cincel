@@ -49,7 +49,7 @@ export const Empresa: React.FC = () => {
                 <h2 className="text-3xl font-bold text-cincel-black mb-6">
                   Experiencia que Construye Confianza
                 </h2>
-                <div className="space-y-4 text-cincel-gray leading-relaxed">
+                <div className="space-y-4 text-cincel-dark leading-relaxed">
                   <p>
                     <strong className="text-cincel-black">Cincel Construcciones</strong> es una empresa constructora 
                     establecida en Uruguay con años de experiencia en el sector. Comenzamos con proyectos residenciales 
@@ -67,20 +67,20 @@ export const Empresa: React.FC = () => {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-cincel-lightgray p-6 rounded-lg text-center">
-                  <div className="text-4xl font-bold text-cincel-gold mb-2">50+</div>
-                  <div className="text-sm text-cincel-gray">Proyectos Completados</div>
+                  <div className="text-4xl font-bold text-primary mb-2">50+</div>
+                  <div className="text-sm text-cincel-dark">Proyectos Completados</div>
                 </div>
                 <div className="bg-cincel-lightgray p-6 rounded-lg text-center">
-                  <div className="text-4xl font-bold text-cincel-gold mb-2">100%</div>
-                  <div className="text-sm text-cincel-gray">Clientes Satisfechos</div>
+                  <div className="text-4xl font-bold text-primary mb-2">100%</div>
+                  <div className="text-sm text-cincel-dark">Clientes Satisfechos</div>
                 </div>
                 <div className="bg-cincel-lightgray p-6 rounded-lg text-center">
-                  <div className="text-4xl font-bold text-cincel-gold mb-2">15+</div>
-                  <div className="text-sm text-cincel-gray">Profesionales</div>
+                  <div className="text-4xl font-bold text-primary mb-2">15+</div>
+                  <div className="text-sm text-cincel-dark">Profesionales</div>
                 </div>
                 <div className="bg-cincel-lightgray p-6 rounded-lg text-center">
-                  <div className="text-4xl font-bold text-cincel-gold mb-2">24/7</div>
-                  <div className="text-sm text-cincel-gray">Disponibilidad</div>
+                  <div className="text-4xl font-bold text-primary mb-2">24/7</div>
+                  <div className="text-sm text-cincel-dark">Disponibilidad</div>
                 </div>
               </div>
             </div>
@@ -118,10 +118,10 @@ export const Empresa: React.FC = () => {
                 return (
                   <div key={value.id} className="bg-white rounded-lg p-6 text-center">
                     <div className="flex justify-center mb-4">
-                      <IconComponent className="text-cincel-gold" size={56} />
+                      <IconComponent className="text-primary" size={56} />
                     </div>
                     <h3 className="text-xl font-bold text-cincel-black mb-3">{value.title}</h3>
-                    <p className="text-cincel-gray leading-relaxed">{value.description}</p>
+                    <p className="text-cincel-dark leading-relaxed">{value.description}</p>
                   </div>
                 );
               })}
@@ -129,20 +129,20 @@ export const Empresa: React.FC = () => {
               {/* Valores adicionales */}
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="flex justify-center mb-4">
-                  <TeamIcon className="text-cincel-gold" size={56} />
+                  <TeamIcon className="text-primary" size={56} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-3">Equipo Capacitado</h3>
-                <p className="text-cincel-gray leading-relaxed">
+                <p className="text-cincel-dark leading-relaxed">
                   Personal con formación técnica y años de experiencia en el rubro
                 </p>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="flex justify-center mb-4">
-                  <HammerIcon className="text-cincel-gold" size={56} />
+                  <HammerIcon className="text-primary" size={56} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-3">Materiales de Calidad</h3>
-                <p className="text-cincel-gray leading-relaxed">
+                <p className="text-cincel-dark leading-relaxed">
                   Trabajamos con proveedores confiables y materiales certificados
                 </p>
               </div>
@@ -161,14 +161,14 @@ export const Empresa: React.FC = () => {
             </p>
             
             <div className="space-y-6">
-              <div className="bg-white p-6 rounded-lg border-l-4 border-cincel-gold shadow-sm">
+              <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-cincel-gold text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
                     1
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-cincel-black mb-2">Consulta Inicial</h3>
-                    <p className="text-cincel-gray leading-relaxed">
+                    <p className="text-cincel-dark leading-relaxed">
                       Conversamos sobre tu proyecto, necesidades, plazos y presupuesto estimado.
                       <strong> Sin compromiso, sin costo.</strong> Podés contactarnos por WhatsApp, email o formulario web.
                     </p>
@@ -176,14 +176,14 @@ export const Empresa: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border-l-4 border-cincel-gold shadow-sm">
+              <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-cincel-gold text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
                     2
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-cincel-black mb-2">Relevamiento en Sitio</h3>
-                    <p className="text-cincel-gray leading-relaxed">
+                    <p className="text-cincel-dark leading-relaxed">
                       Visitamos el lugar, evaluamos el alcance real de los trabajos, tomamos medidas y
                       documentamos requisitos técnicos. Identificamos posibles complicaciones y soluciones.
                     </p>
@@ -191,14 +191,14 @@ export const Empresa: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border-l-4 border-cincel-gold shadow-sm">
+              <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-cincel-gold text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
                     3
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-cincel-black mb-2">Presupuesto Detallado</h3>
-                    <p className="text-cincel-gray leading-relaxed">
+                    <p className="text-cincel-dark leading-relaxed">
                       Entregamos presupuesto claro con materiales especificados, mano de obra, cronograma estimado
                       y condiciones de pago. <strong>Todo por escrito, sin sorpresas.</strong>
                     </p>
@@ -206,14 +206,14 @@ export const Empresa: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border-l-4 border-cincel-gold shadow-sm">
+              <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-cincel-gold text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
                     4
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-cincel-black mb-2">Ejecución y Supervisión</h3>
-                    <p className="text-cincel-gray leading-relaxed">
+                    <p className="text-cincel-dark leading-relaxed">
                       Coordinación de oficios, supervisión diaria y comunicación permanente sobre avances.
                       Registro fotográfico del proceso. El cliente siempre sabe en qué punto está su obra.
                     </p>
@@ -221,14 +221,14 @@ export const Empresa: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border-l-4 border-cincel-gold shadow-sm">
+              <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-cincel-gold text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
                     5
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-cincel-black mb-2">Control de Calidad</h3>
-                    <p className="text-cincel-gray leading-relaxed">
+                    <p className="text-cincel-dark leading-relaxed">
                       Inspecciones periódicas, verificación de materiales y acabados.
                       Ajustes cuando es necesario. Mantenemos el sitio ordenado y limpio.
                     </p>
@@ -236,14 +236,14 @@ export const Empresa: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border-l-4 border-cincel-gold shadow-sm">
+              <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-sm">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-cincel-gold text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg">
                     6
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-cincel-black mb-2">Entrega Final</h3>
-                    <p className="text-cincel-gray leading-relaxed">
+                    <p className="text-cincel-dark leading-relaxed">
                       Revisión completa, limpieza profesional, documentación de garantías y certificaciones.
                       Quedamos disponibles para consultas y seguimiento post-entrega.
                     </p>
@@ -264,40 +264,40 @@ export const Empresa: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <CheckShieldIcon className="text-cincel-gold" size={64} />
+                  <CheckShieldIcon className="text-primary" size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Garantía de Obra</h3>
-                <p className="text-cincel-gray leading-relaxed text-center">
+                <p className="text-cincel-dark leading-relaxed text-center">
                   Todos nuestros trabajos cuentan con garantía sobre mano de obra y materiales según tipo de servicio.
                 </p>
               </div>
 
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <DocumentIcon className="text-cincel-gold" size={64} />
+                  <DocumentIcon className="text-primary" size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Certificaciones Técnicas</h3>
-                <p className="text-cincel-gray leading-relaxed text-center">
+                <p className="text-cincel-dark leading-relaxed text-center">
                   Instalaciones eléctricas, sanitarias y de gas realizadas por profesionales matriculados.
                 </p>
               </div>
 
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <ClockIcon className="text-cincel-gold" size={64} />
+                  <ClockIcon className="text-primary" size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Cumplimiento de Plazos</h3>
-                <p className="text-cincel-gray leading-relaxed text-center">
+                <p className="text-cincel-dark leading-relaxed text-center">
                   Cronogramas realistas con compromisos escritos. Coordinamos todos los oficios necesarios.
                 </p>
               </div>
 
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <HandshakeIcon className="text-cincel-gold" size={64} />
+                  <HandshakeIcon className="text-primary" size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Soporte Post-Obra</h3>
-                <p className="text-cincel-gray leading-relaxed text-center">
+                <p className="text-cincel-dark leading-relaxed text-center">
                   Seguimiento posterior a la entrega. Atendemos consultas y garantizamos nuestro trabajo.
                 </p>
               </div>
@@ -333,7 +333,7 @@ export const Empresa: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-cincel-black mb-6">
               ¿Querés saber más sobre cómo trabajamos?
             </h2>
-            <p className="text-xl text-cincel-gray mb-8">
+            <p className="text-xl text-cincel-dark mb-8">
               Conversemos sobre tu proyecto sin compromiso
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

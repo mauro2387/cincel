@@ -52,7 +52,7 @@ export const ServicioDetalle: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <Link
               to="/servicios"
-              className="inline-flex items-center gap-2 text-cincel-gold hover:text-gold-400 mb-6 focus:outline-none focus:underline"
+              className="inline-flex items-center gap-2 text-primary hover:text-gold-400 mb-6 focus:outline-none focus:underline"
             >
               ← Volver a servicios
             </Link>
@@ -61,7 +61,7 @@ export const ServicioDetalle: React.FC = () => {
               <div className="flex justify-center">
                 {(() => {
                   const IconComponent = getIconComponent(service.iconType);
-                  return <IconComponent className="text-cincel-gold" size={72} />;
+                  return <IconComponent className="text-primary" size={72} />;
                 })()}
               </div>
               <div>
@@ -102,7 +102,7 @@ export const ServicioDetalle: React.FC = () => {
                   <ul className="space-y-3">
                     {service.scope.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <span className="w-6 h-6 bg-cincel-gold rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5">
+                        <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5">
                           ✓
                         </span>
                         <span className="text-cincel-black leading-relaxed">{item}</span>
@@ -119,7 +119,7 @@ export const ServicioDetalle: React.FC = () => {
                   <div className="grid gap-3">
                     {service.targetAudience.map((audience, index) => (
                       <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-gray-200">
-                        <span className="text-cincel-gold text-xl">→</span>
+                        <span className="text-primary text-xl">→</span>
                         <span className="text-cincel-black">{audience}</span>
                       </div>
                     ))}
@@ -131,7 +131,7 @@ export const ServicioDetalle: React.FC = () => {
               <div className="md:col-span-1">
                 <div className="sticky top-24 space-y-4">
                   {/* Card de cotización */}
-                  <div className="card p-6 border-2 border-cincel-gold">
+                  <div className="card p-6 border-2 border-primary">
                     <h3 className="text-xl font-bold text-cincel-black mb-4">
                       Cotizá este Servicio
                     </h3>

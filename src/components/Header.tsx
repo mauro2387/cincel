@@ -43,18 +43,20 @@ export const Header: React.FC = () => {
           {/* Logo y marca */}
           <Link
             to="/"
-            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cincel-gold rounded-md"
+            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-primary rounded-md"
             onClick={closeMobileMenu}
           >
-            {/* Badge circular estilo logo */}
-            <div className="w-12 h-12 border-2 border-cincel-gold rounded-full flex items-center justify-center bg-white group-hover:bg-cincel-gold transition-colors">
-              <span className="text-cincel-gold group-hover:text-white font-bold text-xl">C</span>
-            </div>
+            {/* Logo */}
+            <img 
+              src="/IMG/LOGO GRANDE.png" 
+              alt="Cincel Construcciones Logo" 
+              className="h-12 w-auto"
+            />
             <div className="hidden sm:block">
               <div className="text-lg font-bold text-cincel-black leading-tight">
                 {brandConfig.companyName}
               </div>
-              <div className="text-xs text-cincel-gold">{brandConfig.tagline}</div>
+              <div className="text-xs text-primary">{brandConfig.tagline}</div>
             </div>
           </Link>
 
@@ -64,8 +66,8 @@ export const Header: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-medium transition-colors hover:text-cincel-gold focus:outline-none focus:text-cincel-gold ${
-                  isActivePath(link.path) ? 'text-cincel-gold' : 'text-cincel-black'
+                className={`font-medium transition-colors hover:text-primary focus:outline-none focus:text-primary ${
+                  isActivePath(link.path) ? 'text-primary' : 'text-cincel-black'
                 }`}
               >
                 {link.label}
@@ -82,7 +84,7 @@ export const Header: React.FC = () => {
           {/* Botón menú mobile */}
           <button
             onClick={toggleMobileMenu}
-            className="lg:hidden p-2 text-cincel-black hover:text-cincel-gold focus:outline-none focus:ring-2 focus:ring-cincel-gold rounded-md"
+            className="lg:hidden p-2 text-cincel-black hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded-md"
             aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={isMobileMenuOpen}
           >
@@ -107,8 +109,8 @@ export const Header: React.FC = () => {
                   key={link.path}
                   to={link.path}
                   onClick={closeMobileMenu}
-                  className={`py-2 px-3 rounded-md font-medium transition-colors hover:bg-cincel-lightgray focus:outline-none focus:ring-2 focus:ring-cincel-gold ${
-                    isActivePath(link.path) ? 'text-cincel-gold bg-cincel-lightgray' : 'text-cincel-black'
+                  className={`py-2 px-3 rounded-md font-medium transition-colors hover:bg-cincel-lightgray focus:outline-none focus:ring-2 focus:ring-primary ${
+                    isActivePath(link.path) ? 'text-primary bg-cincel-lightgray' : 'text-cincel-black'
                   }`}
                 >
                   {link.label}
