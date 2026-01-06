@@ -6,11 +6,12 @@ import React, { useState, useEffect } from 'react';
 import { 
   usePresupuestosStore, 
   type LocalPresupuesto, 
-  type PresupuestoItem 
+  type PresupuestoItem
 } from '../store/presupuestosStore';
 import { usePipelineStore } from '../store/pipelineStore';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+import type { PresupuestoEstado } from '../../lib/database.types';
 
 const ESTADO_COLORS: Record<string, string> = {
   borrador: 'bg-gray-100 text-gray-700',
@@ -669,7 +670,7 @@ const PresupuestoEditor: React.FC<PresupuestoEditorProps> = ({ presupuesto, onCl
                 </label>
                 <select
                   value={formData.estado}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, estado: e.target.value }))}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, estado: e.target.value as PresupuestoEstado }))}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500"
                 >
                   <option value="borrador">Borrador</option>
