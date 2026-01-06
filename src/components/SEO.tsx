@@ -32,7 +32,7 @@ export const SEO: React.FC<SEOProps> = ({
 }) => {
   const fullTitle = `${title} | ${brandConfig.companyName}`;
   const url = canonical ? `${brandConfig.siteUrl}${canonical}` : brandConfig.siteUrl;
-  const defaultOgImage = `${brandConfig.siteUrl}/og-image.jpg`; // Crear esta imagen
+  const defaultOgImage = `${brandConfig.siteUrl}/IMG/LOGO GRANDE.png`;
 
   useEffect(() => {
     // Actualizar title
