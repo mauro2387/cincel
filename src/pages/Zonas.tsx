@@ -34,7 +34,7 @@ export const Zonas: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl">
+              <div className="w-16 h-16 bg-white border-2 rounded-full flex items-center justify-center font-bold text-2xl" style={{ borderColor: '#c08826', color: '#c08826' }}>
                 M
               </div>
               <div>
@@ -91,7 +91,7 @@ export const Zonas: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl">
+              <div className="w-16 h-16 bg-white border-2 rounded-full flex items-center justify-center font-bold text-2xl" style={{ borderColor: '#c08826', color: '#c08826' }}>
                 D
               </div>
               <div>
