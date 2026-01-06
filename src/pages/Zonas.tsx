@@ -79,7 +79,6 @@ export const Zonas: React.FC = () => {
               <div className="bg-primary bg-opacity-10 border-l-4 border-primary p-6 rounded">
                 <p className="text-cincel-dark">
                   <strong className="text-cincel-black">Cobertura total:</strong> Trabajamos en toda el área metropolitana.
-                  Si tu proyecto está en Canelones o San José (áreas cercanas), consultanos disponibilidad.
                 </p>
               </div>
             </div>
