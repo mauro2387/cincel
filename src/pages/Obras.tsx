@@ -27,7 +27,7 @@ export const Obras: React.FC = () => {
       />
 
       {/* Overlay de "En Desarrollo" */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-md">
+      <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-md">
         <div className="bg-white/95 shadow-2xl rounded-2xl p-8 md:p-12 max-w-2xl mx-4 text-center border-4 border-primary">
           <div className="mb-6">
             <span className="text-7xl">🚧</span>

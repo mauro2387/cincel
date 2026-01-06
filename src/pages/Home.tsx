@@ -348,7 +348,7 @@ export const Home: React.FC = () => {
       {featuredProjects.length > 0 && (
         <section className="py-8 md:py-12 bg-white relative">
           {/* Overlay de "En Desarrollo" */}
-          <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm">
+          <div className="absolute inset-0 z-40 flex items-center justify-center bg-white/80 backdrop-blur-sm">
             <div className="bg-white shadow-lg rounded-lg p-4 max-w-md mx-4 text-center border border-gray-200">
               <div className="mb-2 flex justify-center">
                 <ClockIcon className="text-primary" size={32} />
