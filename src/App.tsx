@@ -24,6 +24,13 @@ import {
 } from './admin';
 import { PipelinePage } from './admin/pages/PipelinePage';
 import { PresupuestosPageV2 } from './admin/pages/PresupuestosPageV2';
+import { DashboardPageV2 } from './admin/pages/DashboardPageV2';
+import { InboxPage } from './admin/pages/InboxPage';
+import { ObrasPageV2 } from './admin/pages/ObrasPageV2';
+import { TareasPage } from './admin/pages/TareasPage';
+import { ClientesPageV2 } from './admin/pages/ClientesPageV2';
+import { ReportesPage } from './admin/pages/ReportesPage';
+import { ConfiguracionPage } from './admin/pages/ConfiguracionPage';
 
 function App() {
   return (
@@ -46,12 +53,16 @@ function App() {
         {/* Admin Routes */}
         <Route path="/admin/login" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<DashboardPage />} />
+          <Route index element={<DashboardPageV2 />} />
+          <Route path="inbox" element={<InboxPage />} />
           <Route path="pipeline" element={<PipelinePage />} />
           <Route path="leads" element={<LeadsPage />} />
-          <Route path="clientes" element={<ClientesPage />} />
-          <Route path="obras" element={<AdminObrasPage />} />
+          <Route path="clientes" element={<ClientesPageV2 />} />
+          <Route path="obras" element={<ObrasPageV2 />} />
           <Route path="cotizaciones" element={<PresupuestosPageV2 />} />
+          <Route path="tareas" element={<TareasPage />} />
+          <Route path="reportes" element={<ReportesPage />} />
+          <Route path="configuracion" element={<ConfiguracionPage />} />
         </Route>
       </Routes>
 
