@@ -51,7 +51,7 @@ export const Servicios: React.FC = () => {
       </section>
 
       {/* Listado de servicios */}
-      <section className="section bg-white">
+      <section className="pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => {
@@ -99,7 +99,7 @@ export const Servicios: React.FC = () => {
       </section>
 
       {/* CTA */}
-      <section className="section bg-primary">
+      <section className="py-4 md:py-6 bg-primary">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
