@@ -11,7 +11,6 @@ import {
   CheckShieldIcon,
   ClockIcon,
   DocumentIcon,
-  TeamIcon,
   HammerIcon,
   HandshakeIcon
 } from '../components/Icons';
@@ -153,7 +152,7 @@ export const Empresa: React.FC = () => {
                 return (
                   <div key={value.id} className="bg-white rounded-lg p-6 text-center">
                     <div className="flex justify-center mb-4">
-                      <IconComponent style={{ color: '#c08826' }} size={56} />
+                      <IconComponent className="text-primary" size={56} />
                     </div>
                     <h3 className="text-xl font-bold text-cincel-black mb-3">{value.title}</h3>
                     <p className="text-cincel-dark leading-relaxed">{value.description}</p>
@@ -272,7 +271,7 @@ export const Empresa: React.FC = () => {
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <CheckShieldIcon style={{ color: '#c08826' }} size={64} />
+                  <CheckShieldIcon className="text-primary" size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Garantía de Obra</h3>
                 <p className="text-cincel-dark leading-relaxed text-center">
@@ -282,7 +281,7 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <ClockIcon style={{ color: '#c08826' }} size={64} />
+                  <ClockIcon className="text-primary" size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Cumplimiento de Plazos</h3>
                 <p className="text-cincel-dark leading-relaxed text-center">
@@ -292,7 +291,7 @@ export const Empresa: React.FC = () => {
 
               <div className="bg-white p-6 rounded-lg">
                 <div className="flex justify-center mb-4">
-                  <HandshakeIcon style={{ color: '#c08826' }} size={64} />
+                  <HandshakeIcon className="text-primary" size={64} />
                 </div>
                 <h3 className="text-xl font-bold text-cincel-black mb-2 text-center">Soporte Post-Obra</h3>
                 <p className="text-cincel-dark leading-relaxed text-center">
