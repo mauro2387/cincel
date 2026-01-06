@@ -48,21 +48,18 @@ export const Home: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden text-white min-h-[600px] md:min-h-[700px] flex items-center" style={{ backgroundColor: '#183950' }}>
+      <section className="relative overflow-hidden text-white min-h-[600px] md:min-h-[700px] flex items-center bg-black">
         {/* Video de fondo */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          style={{ minHeight: '100%', minWidth: '100%' }}
+          className="absolute top-0 left-0 w-full h-full object-cover z-10"
+          style={{ minHeight: '100%', minWidth: '100%', opacity: 0.4 }}
         >
-          <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=165" type="video/mp4" />
+          <source src="/1197802-hd_1920_1080_25fps.mp4" type="video/mp4" />
         </video>
-        
-        {/* Overlay oscuro para mejorar legibilidad */}
-        <div className="absolute top-0 left-0 w-full h-full bg-opacity-50 z-10" style={{ backgroundColor: '#183950' }}></div>
         
         {/* Contenido */}
         <div className="container mx-auto px-4 py-20 md:py-32 relative z-20">
@@ -122,36 +119,36 @@ export const Home: React.FC = () => {
               Una empresa constructora con presencia consolidada en Montevideo<br />
               que trabaja en todo el país
             </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-12">
               <div className="text-center">
-                <div className="flex justify-center mb-4">
-                  <TeamIcon className="text-primary" size={64} />
+                <div className="flex justify-center mb-2 md:mb-4">
+                  <TeamIcon className="text-primary" size={48} />
                 </div>
-                <h3 className="text-xl font-bold text-cincel-black mb-2">Equipo Profesional</h3>
-                <p className="text-cincel-dark">
+                <h3 className="text-lg md:text-xl font-bold text-cincel-black mb-1 md:mb-2">Equipo Profesional</h3>
+                <p className="text-cincel-dark text-sm">
                   Personal capacitado y con años de experiencia en el sector de la construcción
                 </p>
               </div>
               <div className="text-center">
-                <div className="flex justify-center mb-4">
-                  <HammerIcon className="text-primary" size={64} />
+                <div className="flex justify-center mb-2 md:mb-4">
+                  <HammerIcon className="text-primary" size={48} />
                 </div>
-                <h3 className="text-xl font-bold text-cincel-black mb-2">Obras Realizadas</h3>
-                <p className="text-cincel-dark">
+                <h3 className="text-lg md:text-xl font-bold text-cincel-black mb-1 md:mb-2">Obras Realizadas</h3>
+                <p className="text-cincel-dark text-sm">
                   Decenas de proyectos completados en Montevideo y el resto de Uruguay
                 </p>
               </div>
               <div className="text-center">
-                <div className="flex justify-center mb-4">
-                  <CheckShieldIcon className="text-primary" size={64} />
+                <div className="flex justify-center mb-2 md:mb-4">
+                  <CheckShieldIcon className="text-primary" size={48} />
                 </div>
-                <h3 className="text-xl font-bold text-cincel-black mb-2">Calidad Garantizada</h3>
-                <p className="text-cincel-dark">
+                <h3 className="text-lg md:text-xl font-bold text-cincel-black mb-1 md:mb-2">Calidad Garantizada</h3>
+                <p className="text-cincel-dark text-sm">
                   Materiales de primera, supervisión constante y garantía en todos los trabajos
                 </p>
               </div>
             </div>
-            <div className="mt-10">
+            <div className="mt-6 md:mt-10">
               <Link to="/empresa" className="link-gold text-lg font-semibold">
                 Conocé más sobre nosotros →
               </Link>
@@ -170,31 +167,43 @@ export const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="relative h-64 rounded-lg overflow-hidden">
-              <PlaceholderImage type="blueprint" alt="Planificación y diseño de proyectos" className="rounded-lg" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
+            <div className="text-center">
+              <div className="relative h-40 md:h-64 rounded-lg overflow-hidden mb-2 md:mb-4">
+                <img src="/IMG/cincel img/plano.png" alt="Planificación y diseño de proyectos" className="w-full h-full object-cover rounded-lg" />
+              </div>
+              <h3 className="text-sm md:text-xl font-semibold text-white">Planificación Detallada</h3>
             </div>
-            <div className="relative h-64 rounded-lg overflow-hidden">
-              <PlaceholderImage type="construction" alt="Obra en construcción" className="rounded-lg" />
+            <div className="text-center">
+              <div className="relative h-40 md:h-64 rounded-lg overflow-hidden mb-2 md:mb-4">
+                <img src="/IMG/cincel img/contruccion.jpeg" alt="Obra en construcción" className="w-full h-full object-cover rounded-lg" />
+              </div>
+              <h3 className="text-sm md:text-xl font-semibold text-white">Construcción</h3>
             </div>
-            <div className="relative h-64 rounded-lg overflow-hidden">
-              <PlaceholderImage type="team" alt="Equipo profesional trabajando" className="rounded-lg" />
+            <div className="text-center">
+              <div className="relative h-40 md:h-64 rounded-lg overflow-hidden mb-2 md:mb-4">
+                <img src="/IMG/cincel img/aaaa.jpeg" alt="Materiales de primera calidad" className="w-full h-full object-cover rounded-lg" />
+              </div>
+              <h3 className="text-sm md:text-xl font-semibold text-white">Materiales de Calidad</h3>
             </div>
-            <div className="relative h-64 rounded-lg overflow-hidden">
-              <PlaceholderImage type="renovation" alt="Proceso de reforma" className="rounded-lg" />
+            <div className="text-center">
+              <div className="relative h-40 md:h-64 rounded-lg overflow-hidden mb-2 md:mb-4">
+                <img src="/IMG/cincel img/reforma.jpeg" alt="Proceso de reforma" className="w-full h-full object-cover rounded-lg" />
+              </div>
+              <h3 className="text-sm md:text-xl font-semibold text-white">Reformas</h3>
             </div>
-            <div className="relative h-64 rounded-lg overflow-hidden">
-              <PlaceholderImage type="building" alt="Proyecto completado" className="rounded-lg" />
+            <div className="text-center">
+              <div className="relative h-40 md:h-64 rounded-lg overflow-hidden mb-2 md:mb-4">
+                <img src="/IMG/cincel img/proyecto.jpeg" alt="Proyecto completado" className="w-full h-full object-cover rounded-lg" />
+              </div>
+              <h3 className="text-sm md:text-xl font-semibold text-white">Proyectos Completados</h3>
             </div>
-            <div className="relative h-64 rounded-lg overflow-hidden">
-              <PlaceholderImage type="process" alt="Control de calidad" className="rounded-lg" />
+            <div className="text-center">
+              <div className="relative h-40 md:h-64 rounded-lg overflow-hidden mb-2 md:mb-4">
+                <img src="/IMG/cincel img/control de calidad.jpeg" alt="Control de calidad" className="w-full h-full object-cover rounded-lg" />
+              </div>
+              <h3 className="text-sm md:text-xl font-semibold text-white">Control de Calidad</h3>
             </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-gray-400 text-sm italic">
-              * Imágenes ilustrativas del proceso. Fotos reales de proyectos disponibles bajo solicitud.
-            </p>
           </div>
         </div>
       </section>
@@ -210,7 +219,7 @@ export const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
             {featuredServices.map((service, idx) => {
               // Asignar iconos rotativos
               const IconComponent = idx === 0 ? HammerIcon : idx === 1 ? RulerIcon : CameraIcon;
@@ -261,20 +270,20 @@ export const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {brandConfig.values.map((value, idx) => {
               const icons = [CheckShieldIcon, ClockIcon, HammerIcon, DocumentIcon, RulerIcon, TeamIcon];
               const IconComponent = icons[idx] || CheckShieldIcon;
               
               return (
                 <div key={value.id} className="text-center">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-20 h-20 rounded-full bg-cincel-lightgray flex items-center justify-center">
-                      <IconComponent className="text-primary" size={48} />
+                  <div className="flex justify-center mb-2 md:mb-4">
+                    <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-cincel-lightgray flex items-center justify-center">
+                      <IconComponent className="text-primary" size={32} />
                     </div>
                   </div>
-                  <h3 className="text-lg font-bold text-cincel-black mb-2">{value.title}</h3>
-                  <p className="text-cincel-dark text-sm">{value.description}</p>
+                  <h3 className="text-sm md:text-lg font-bold text-cincel-black mb-1 md:mb-2">{value.title}</h3>
+                  <p className="text-cincel-dark text-xs md:text-sm">{value.description}</p>
                 </div>
               );
             })}
@@ -292,43 +301,43 @@ export const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg p-6 text-center">
-              <div className="w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="bg-white rounded-lg p-4 md:p-6 text-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 text-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 text-xl md:text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
                 1
               </div>
-              <h3 className="text-lg font-bold text-cincel-black mb-2">Consulta Inicial</h3>
-              <p className="text-cincel-dark text-sm">
+              <h3 className="text-sm md:text-lg font-bold text-cincel-black mb-1 md:mb-2">Consulta Inicial</h3>
+              <p className="text-cincel-dark text-xs md:text-sm">
                 Visitamos la obra, entendemos tus necesidades y tomamos medidas. <strong>Sin costo.</strong>
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-6 text-center">
-              <div className="w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
+            <div className="bg-white rounded-lg p-4 md:p-6 text-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 text-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 text-xl md:text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
                 2
               </div>
-              <h3 className="text-lg font-bold text-cincel-black mb-2">Presupuesto Detallado</h3>
-              <p className="text-cincel-dark text-sm">
+              <h3 className="text-sm md:text-lg font-bold text-cincel-black mb-1 md:mb-2">Presupuesto Detallado</h3>
+              <p className="text-cincel-dark text-xs md:text-sm">
                 Recibís un presupuesto completo con materiales, plazos y costos. <strong>Todo claro.</strong>
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-6 text-center">
-              <div className="w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
+            <div className="bg-white rounded-lg p-4 md:p-6 text-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 text-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 text-xl md:text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
                 3
               </div>
-              <h3 className="text-lg font-bold text-cincel-black mb-2">Ejecución</h3>
-              <p className="text-cincel-dark text-sm">
+              <h3 className="text-sm md:text-lg font-bold text-cincel-black mb-1 md:mb-2">Ejecución</h3>
+              <p className="text-cincel-dark text-xs md:text-sm">
                 Nuestro equipo trabaja en tu proyecto con supervisión constante y comunicación permanente.
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-6 text-center">
-              <div className="w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
+            <div className="bg-white rounded-lg p-4 md:p-6 text-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 text-white rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 text-xl md:text-2xl font-bold" style={{ backgroundColor: '#c08826' }}>
                 4
               </div>
-              <h3 className="text-lg font-bold text-cincel-black mb-2">Entrega</h3>
-              <p className="text-cincel-dark text-sm">
+              <h3 className="text-sm md:text-lg font-bold text-cincel-black mb-1 md:mb-2">Entrega</h3>
+              <p className="text-cincel-dark text-xs md:text-sm">
                 Recibís tu obra terminada en el plazo acordado y con la mejor garantía.
               </p>
             </div>
@@ -338,7 +347,30 @@ export const Home: React.FC = () => {
 
       {/* Proyectos Destacados */}
       {featuredProjects.length > 0 && (
-        <section className="section bg-white">
+        <section className="py-8 md:py-12 bg-white relative">
+          {/* Overlay de "En Desarrollo" */}
+          <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm">
+            <div className="bg-white shadow-lg rounded-lg p-4 max-w-md mx-4 text-center border border-gray-200">
+              <div className="mb-2 flex justify-center">
+                <ClockIcon className="text-primary" size={32} />
+              </div>
+              <h3 className="text-lg font-bold text-cincel-black mb-1">
+                Sección en Desarrollo
+              </h3>
+              <p className="text-xs text-cincel-dark mb-3">
+                Estamos trabajando para mostrarte nuestro portfolio completo.
+              </p>
+              <div className="flex gap-2 justify-center">
+                <Link to="/cotizar" className="btn-primary text-xs px-3 py-1.5">
+                  Cotizar
+                </Link>
+                <Link to="/servicios" className="btn-outline text-xs px-3 py-1.5">
+                  Servicios
+                </Link>
+              </div>
+            </div>
+          </div>
+
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="section-title">Proyectos Realizados</h2>
@@ -347,7 +379,7 @@ export const Home: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
               {featuredProjects.map((project) => (
                 <Link
                   key={project.slug}
@@ -413,22 +445,22 @@ export const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
             {brandConfig.workZones.map((zone) => (
               <Link
                 key={zone.id}
                 to={zone.id === 'nacional' ? '/contacto' : `/zonas#${zone.id}`}
-                className="bg-white p-8 rounded-lg hover:shadow-lg transition-all group focus:outline-none focus:ring-2 focus:ring-primary"
+                className="bg-white p-4 md:p-8 rounded-lg hover:shadow-lg transition-all group focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                <div className="flex justify-center mb-4">
-                  <div className="w-12 h-12 rounded-full border-2 flex items-center justify-center font-bold text-xl" style={{ borderColor: '#c08826', color: '#c08826' }}>
+                <div className="flex justify-center mb-2 md:mb-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 flex items-center justify-center font-bold text-lg md:text-xl" style={{ borderColor: '#c08826', color: '#c08826' }}>
                     {zone.id === 'montevideo' ? 'M' : zone.id === 'maldonado' ? 'D' : 'UY'}
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors text-center text-cincel-black">
+                <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-3 group-hover:text-primary transition-colors text-center text-cincel-black">
                   {zone.name}
                 </h3>
-                <p className="text-cincel-dark leading-relaxed text-center">
+                <p className="text-cincel-dark leading-relaxed text-center text-sm md:text-base">
                   {zone.description}
                 </p>
               </Link>
