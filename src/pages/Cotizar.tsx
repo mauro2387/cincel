@@ -15,6 +15,7 @@ export const Cotizar: React.FC = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     telefono: '',
+    email: '',
     tipoProyecto: '',
     departamento: '',
     ciudadZona: '',
@@ -53,14 +54,24 @@ export const Cotizar: React.FC = () => {
       } else if (!/^\d{8,15}$/.test(formData.telefono.replace(/\D/g, ''))) {
         newErrors.telefono = 'Teléfono inválido';
       }
+      if (!formData.email.trim()) {
+        newErrors.email = 'El email es obligatorio';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        newErrors.email = 'Email inválido';
+      }
     }
 
     if (currentStep === 2 && !formData.tipoProyecto) {
       newErrors.tipoProyecto = 'Seleccioná un tipo de proyecto';
     }
 
-    if (currentStep === 3 && !formData.departamento) {
-      newErrors.departamento = 'Seleccioná un departamento';
+    if (currentStep === 3) {
+      if (!formData.departamento) {
+        newErrors.departamento = 'Seleccioná un departamento';
+      }
+      if (!formData.ciudadZona.trim()) {
+        newErrors.ciudadZona = 'La ciudad/zona es obligatoria';
+      }
     }
 
     setErrors(newErrors);
@@ -108,6 +119,7 @@ export const Cotizar: React.FC = () => {
 
 *Nombre:* ${formData.nombre}
 *Teléfono:* ${formData.telefono}
+*Email:* ${formData.email}
 *Tipo de Proyecto:* ${formData.tipoProyecto}
 *Departamento:* ${formData.departamento}
 *Ciudad/Zona:* ${formData.ciudadZona || 'No especificada'}
@@ -208,6 +220,21 @@ ${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}
                       />
                       {errors.telefono && <p className="text-red-500 text-sm mt-1">{errors.telefono}</p>}
                     </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-semibold text-cincel-black mb-2">
+                        Email <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={`input-field ${errors.email ? 'input-error' : ''}`}
+                        placeholder="tu@email.com"
+                      />
+                      {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                    </div>
                   </div>
                 </div>
               )}
@@ -274,7 +301,7 @@ ${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}
                     </div>
                     <div>
                       <label htmlFor="ciudadZona" className="block text-sm font-semibold text-cincel-black mb-2">
-                        Ciudad/Zona
+                        Ciudad/Zona <span className="text-red-500">*</span>
                       </label>
                       {ciudadesDisponibles.length > 0 ? (
                         <select
@@ -282,7 +309,7 @@ ${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}
                           name="ciudadZona"
                           value={formData.ciudadZona}
                           onChange={handleChange}
-                          className="input-field"
+                          className={`input-field ${errors.ciudadZona ? 'input-error' : ''}`}
                         >
                           <option value="">Seleccioná una ciudad/zona</option>
                           {ciudadesDisponibles.map(ciudad => (
@@ -297,11 +324,12 @@ ${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}
                           name="ciudadZona"
                           value={formData.ciudadZona}
                           onChange={handleChange}
-                          className="input-field"
+                          className={`input-field ${errors.ciudadZona ? 'input-error' : ''}`}
                           placeholder="Primero seleccioná un departamento"
                           disabled={!formData.departamento}
                         />
                       )}
+                      {errors.ciudadZona && <p className="text-red-500 text-sm mt-1">{errors.ciudadZona}</p>}
                     </div>
                   </div>
                 </div>
@@ -383,6 +411,10 @@ ${formData.detalles ? `*Detalles del Proyecto:*\n${formData.detalles}\n\n` : ''}
                       <div className="flex justify-between">
                         <dt className="text-cincel-dark">Teléfono:</dt>
                         <dd className="font-semibold text-cincel-black">{formData.telefono}</dd>
+                      </div>
+                      <div className="flex justify-between">
+                        <dt className="text-cincel-dark">Email:</dt>
+                        <dd className="font-semibold text-cincel-black">{formData.email}</dd>
                       </div>
                       <div className="flex justify-between">
                         <dt className="text-cincel-dark">Proyecto:</dt>

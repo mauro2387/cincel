@@ -58,12 +58,22 @@ export const Contacto: React.FC = () => {
       newErrors.telefono = 'Teléfono inválido (mínimo 8 dígitos)';
     }
 
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    if (!formData.email.trim()) {
+      newErrors.email = 'El email es obligatorio';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Email inválido';
     }
 
     if (!formData.departamento) {
       newErrors.departamento = 'Seleccioná un departamento';
+    }
+
+    if (!formData.ciudadZona.trim()) {
+      newErrors.ciudadZona = 'La ciudad/zona es obligatoria';
+    }
+
+    if (!formData.servicio) {
+      newErrors.servicio = 'Seleccioná un tipo de servicio';
     }
 
     setErrors(newErrors);
@@ -193,7 +203,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-cincel-black mb-2">
-                        Email (opcional)
+                        Email <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="email"
@@ -230,7 +240,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                     </div>
                     <div>
                       <label htmlFor="ciudadZona" className="block text-sm font-semibold text-cincel-black mb-2">
-                        Ciudad / Zona
+                        Ciudad / Zona <span className="text-red-500">*</span>
                       </label>
                       {ciudadesDisponibles.length > 0 ? (
                         <select
@@ -238,7 +248,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                           name="ciudadZona"
                           value={formData.ciudadZona}
                           onChange={handleChange}
-                          className="input-field"
+                          className={`input-field ${errors.ciudadZona ? 'input-error' : ''}`}
                         >
                           <option value="">Seleccioná una ciudad/zona</option>
                           {ciudadesDisponibles.map(ciudad => (
@@ -253,25 +263,26 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                           name="ciudadZona"
                           value={formData.ciudadZona}
                           onChange={handleChange}
-                          className="input-field"
+                          className={`input-field ${errors.ciudadZona ? 'input-error' : ''}`}
                           placeholder="Primero seleccioná un departamento"
                           disabled={!formData.departamento}
                         />
                       )}
+                      {errors.ciudadZona && <p className="text-red-500 text-sm mt-1">{errors.ciudadZona}</p>}
                     </div>
                   </div>
 
                   {/* Servicio */}
                   <div>
                     <label htmlFor="servicio" className="block text-sm font-semibold text-cincel-black mb-2">
-                      Tipo de Servicio
+                      Tipo de Servicio <span className="text-red-500">*</span>
                     </label>
                     <select
                       id="servicio"
                       name="servicio"
                       value={formData.servicio}
                       onChange={handleChange}
-                      className="input-field"
+                      className={`input-field ${errors.servicio ? 'input-error' : ''}`}
                     >
                       <option value="">Seleccioná un servicio</option>
                       {services.map(s => (
@@ -279,6 +290,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                       ))}
                       <option value="No estoy seguro">No estoy seguro</option>
                     </select>
+                    {errors.servicio && <p className="text-red-500 text-sm mt-1">{errors.servicio}</p>}
                   </div>
 
                   {/* Urgencia y Presupuesto */}
