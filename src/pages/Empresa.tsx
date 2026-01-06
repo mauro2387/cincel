@@ -127,27 +127,6 @@ export const Empresa: React.FC = () => {
                   </div>
                 );
               })}
-              
-              {/* Valores adicionales */}
-              <div className="bg-white rounded-lg p-6 text-center">
-                <div className="flex justify-center mb-4">
-                  <TeamIcon className="text-primary" size={56} />
-                </div>
-                <h3 className="text-xl font-bold text-cincel-black mb-3">Equipo Capacitado</h3>
-                <p className="text-cincel-dark leading-relaxed">
-                  Personal con formación técnica y años de experiencia en el rubro
-                </p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 text-center">
-                <div className="flex justify-center mb-4">
-                  <HammerIcon className="text-primary" size={56} />
-                </div>
-                <h3 className="text-xl font-bold text-cincel-black mb-3">Materiales de Calidad</h3>
-                <p className="text-cincel-dark leading-relaxed">
-                  Trabajamos con proveedores confiables y materiales certificados
-                </p>
-              </div>
             </div>
           </div>
         </div>
