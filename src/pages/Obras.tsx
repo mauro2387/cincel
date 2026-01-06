@@ -26,6 +26,30 @@ export const Obras: React.FC = () => {
         canonical="/obras"
       />
 
+      {/* Overlay de "En Desarrollo" */}
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-md">
+        <div className="bg-white/95 shadow-2xl rounded-2xl p-8 md:p-12 max-w-2xl mx-4 text-center border-4 border-primary">
+          <div className="mb-6">
+            <span className="text-7xl">🚧</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-cincel-black mb-4">
+            Sección en Desarrollo
+          </h2>
+          <p className="text-lg text-cincel-dark mb-6">
+            Estamos trabajando en esta sección para mostrarte nuestros mejores proyectos.
+            Pronto podrás ver nuestro portfolio completo de obras realizadas.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/" className="btn-primary">
+              Volver al Inicio
+            </Link>
+            <Link to="/cotizar" className="btn-outline">
+              Solicitar Cotización
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Hero */}
       <section className="bg-cincel-black text-white py-16 md:py-20">
         <div className="container mx-auto px-4">

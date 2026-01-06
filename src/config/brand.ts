@@ -24,10 +24,10 @@ export const brandConfig = {
   },
   
   // Contacto
-  whatsappNumber: '59899123456', // Formato: código país + número (sin espacios ni guiones)
-  whatsappNumberDisplay: '+598 99 123 456', // Formato para mostrar
-  email: 'info@cincelconstrucciones.com.uy',
-  phone: '+598 99 123 456',
+  whatsappNumber: '59894741808', // Formato: código país + número (sin espacios ni guiones)
+  whatsappNumberDisplay: '+598 94 741 808', // Formato para mostrar
+  email: 'contacto@cincelconstrucciones.com',
+  phone: '+598 94 741 808',
   
   // Ubicación y zonas de trabajo
   address: {

@@ -197,7 +197,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                         value={formData.telefono}
                         onChange={handleChange}
                         className={`input-field ${errors.telefono ? 'input-error' : ''}`}
-                        placeholder="099 123 456"
+                        placeholder="094 741 808"
                       />
                       {errors.telefono && <p className="text-red-500 text-sm mt-1">{errors.telefono}</p>}
                     </div>
@@ -212,7 +212,7 @@ ${formData.mensaje || 'Sin mensaje adicional'}
                         value={formData.email}
                         onChange={handleChange}
                         className={`input-field ${errors.email ? 'input-error' : ''}`}
-                        placeholder="tu@email.com"
+                        placeholder="contacto@cincelconstrucciones.com"
                       />
                       {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                     </div>
