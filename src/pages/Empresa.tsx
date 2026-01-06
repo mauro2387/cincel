@@ -169,9 +169,9 @@ export const Empresa: React.FC = () => {
       <section className="section bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="section-title text-center">Nuestro Proceso de Trabajo</h2>
+            <h2 className="section-title text-center">Nuestro proceso de trabajo</h2>
             <p className="section-subtitle text-center max-w-2xl mx-auto">
-              Cada proyecto se gestiona con un proceso claro y comunicación constante
+              Cada proyecto comienza con información clara y avanza paso a paso, con comunicación constante y criterios realistas, para que sepas siempre dónde estás parado.
             </p>
             
             <div className="space-y-6">
@@ -181,10 +181,9 @@ export const Empresa: React.FC = () => {
                     1
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-cincel-black mb-2">Consulta Inicial</h3>
+                    <h3 className="text-xl font-bold text-cincel-black mb-2">Formulario web</h3>
                     <p className="text-cincel-dark leading-relaxed">
-                      Conversamos sobre tu proyecto, necesidades, plazos y presupuesto estimado.
-                      <strong> Sin compromiso, sin costo.</strong> Podés contactarnos por WhatsApp, email o formulario web.
+                      El primer paso es completar el formulario de contacto con la información básica de tu proyecto. Esto nos permite entender tu idea antes del primer contacto y preparar mejor la conversación.
                     </p>
                   </div>
                 </div>
@@ -196,10 +195,9 @@ export const Empresa: React.FC = () => {
                     2
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-cincel-black mb-2">Relevamiento en Sitio</h3>
+                    <h3 className="text-xl font-bold text-cincel-black mb-2">Contacto por WhatsApp</h3>
                     <p className="text-cincel-dark leading-relaxed">
-                      Visitamos el lugar, evaluamos el alcance real de los trabajos, tomamos medidas y
-                      documentamos requisitos técnicos. Identificamos posibles complicaciones y soluciones.
+                      Nos comunicamos por WhatsApp para conversar sobre tu proyecto, aclarar dudas, profundizar en los detalles y coordinar los siguientes pasos.
                     </p>
                   </div>
                 </div>
@@ -211,10 +209,9 @@ export const Empresa: React.FC = () => {
                     3
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-cincel-black mb-2">Presupuesto Detallado</h3>
+                    <h3 className="text-xl font-bold text-cincel-black mb-2">Evaluación en el sitio</h3>
                     <p className="text-cincel-dark leading-relaxed">
-                      Entregamos presupuesto claro con materiales especificados, mano de obra, cronograma estimado
-                      y condiciones de pago. <strong>Todo por escrito, sin sorpresas.</strong>
+                      Visitamos el lugar para evaluar el alcance real de los trabajos, tomar medidas y analizar las condiciones del espacio. En esta etapa identificamos posibles desafíos y soluciones.
                     </p>
                   </div>
                 </div>
@@ -226,10 +223,9 @@ export const Empresa: React.FC = () => {
                     4
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-cincel-black mb-2">Ejecución y Supervisión</h3>
+                    <h3 className="text-xl font-bold text-cincel-black mb-2">Presupuesto</h3>
                     <p className="text-cincel-dark leading-relaxed">
-                      Coordinación de oficios, supervisión diaria y comunicación permanente sobre avances.
-                      Registro fotográfico del proceso. El cliente siempre sabe en qué punto está su obra.
+                      Te presentamos una estimación clara y por escrito, con materiales, mano de obra, plazos aproximados y condiciones de pago. Todo de forma transparente y sin sorpresas.
                     </p>
                   </div>
                 </div>
@@ -241,10 +237,9 @@ export const Empresa: React.FC = () => {
                     5
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-cincel-black mb-2">Control de Calidad</h3>
+                    <h3 className="text-xl font-bold text-cincel-black mb-2">Ejecución de la obra</h3>
                     <p className="text-cincel-dark leading-relaxed">
-                      Inspecciones periódicas, verificación de materiales y acabados.
-                      Ajustes cuando es necesario. Mantenemos el sitio ordenado y limpio.
+                      Una vez aprobado el presupuesto, coordinamos y ejecutamos los trabajos, con seguimiento constante y comunicación durante todo el proceso.
                     </p>
                   </div>
                 </div>
@@ -256,10 +251,9 @@ export const Empresa: React.FC = () => {
                     6
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-cincel-black mb-2">Entrega Final</h3>
+                    <h3 className="text-xl font-bold text-cincel-black mb-2">Control y entrega final</h3>
                     <p className="text-cincel-dark leading-relaxed">
-                      Revisión completa, limpieza profesional, documentación de garantías y certificaciones.
-                      Quedamos disponibles para consultas y seguimiento post-entrega.
+                      Realizamos una revisión completa del trabajo, cuidamos los detalles finales y hacemos la entrega de la obra. Quedamos disponibles para consultas y acompañamiento posterior.
                     </p>
                   </div>
                 </div>
