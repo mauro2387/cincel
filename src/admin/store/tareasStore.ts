@@ -4,6 +4,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { isSupabaseConfigured } from '../../lib/supabase';
 
 export type TareaEstado = 'pendiente' | 'en_progreso' | 'completada' | 'cancelada';
 export type TareaPrioridad = 'baja' | 'media' | 'alta' | 'urgente';
@@ -176,7 +177,7 @@ const demoTareas: Tarea[] = [
 export const useTareasStore = create<TareasState>()(
   persist(
     (set, get) => ({
-      tareas: demoTareas,
+      tareas: isSupabaseConfigured() ? [] : demoTareas,
       recordatorios: [],
       filtroEstado: 'todas',
       filtroPrioridad: 'todas',

@@ -196,7 +196,8 @@ const DEMO_LEADS: LocalLead[] = [
 export const usePipelineStore = create<PipelineState>()(
   persist(
     (set, get) => ({
-      leads: DEMO_LEADS,
+      // Inicializar vacío si Supabase está configurado, sino usar datos demo
+      leads: (isSupabaseConfigured() && supabase) ? [] : DEMO_LEADS,
       isLoading: false,
       error: null,
       selectedLeadId: null,

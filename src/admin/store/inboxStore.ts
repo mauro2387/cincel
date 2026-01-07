@@ -5,6 +5,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { isSupabaseConfigured } from '../../lib/supabase';
 
 // Types
 export type CanalMensaje = 'whatsapp' | 'instagram' | 'facebook' | 'email' | 'telefono' | 'web';
@@ -343,9 +344,9 @@ const demoPlantillas: PlantillaRespuesta[] = [
 export const useInboxStore = create<InboxState>()(
   persist(
     (set, get) => ({
-      conversaciones: demoConversaciones,
-      mensajes: demoMensajes,
-      plantillas: demoPlantillas,
+      conversaciones: isSupabaseConfigured() ? [] : demoConversaciones,
+      mensajes: isSupabaseConfigured() ? [] : demoMensajes,
+      plantillas: isSupabaseConfigured() ? [] : demoPlantillas,
       selectedConversacionId: null,
       filtroCanal: 'todos',
       filtroEstado: 'todos',

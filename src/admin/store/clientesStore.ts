@@ -4,6 +4,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { isSupabaseConfigured } from '../../lib/supabase';
 
 export type TipoCliente = 'particular' | 'empresa' | 'gobierno' | 'otro';
 export type EstadoCliente = 'activo' | 'inactivo' | 'potencial';
@@ -240,9 +241,9 @@ const demoNotas: NotaCliente[] = [
 export const useClientesStore = create<ClientesState>()(
   persist(
     (set, get) => ({
-      clientes: demoClientes,
+      clientes: isSupabaseConfigured() ? [] : demoClientes,
       documentos: [],
-      notas: demoNotas,
+      notas: isSupabaseConfigured() ? [] : demoNotas,
       selectedClienteId: null,
       busqueda: '',
       filtroTipo: 'todos',
