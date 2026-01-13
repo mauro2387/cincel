@@ -315,7 +315,7 @@ const mockCommitments: Commitment[] = [
     type: 'payroll',
     source_id: 'pay-2026-01',
     source_code: 'NOM-2026-01',
-    project_id: null,
+    project_id: '',
     project_name: 'General',
     supplier_id: null,
     supplier_name: null,
@@ -351,7 +351,7 @@ const mockSummary: CommitmentsSummary = {
   by_project: [
     { project_id: 'proj-1', project_name: 'Casa Carrasco Premium', committed: 1890000, pending: 795000 },
     { project_id: 'proj-2', project_name: 'Edificio Pocitos', committed: 640000, pending: 275000 },
-    { project_id: null as unknown as string, project_name: 'General', committed: 320000, pending: 100000 },
+    { project_id: '', project_name: 'General', committed: 320000, pending: 100000 },
   ],
   
   due_this_week: 385000,
@@ -369,13 +369,13 @@ export const useCommitmentsStore = create<CommitmentsState>((set, get) => ({
   approvalWorkflows: [],
   loading: false,
   
-  fetchPurchaseRequests: async (projectId?: string) => {
+  fetchPurchaseRequests: async (_projectId?: string) => {
     set({ loading: true });
     await new Promise(r => setTimeout(r, 300));
     set({ loading: false });
   },
   
-  fetchCommitments: async (projectId?: string) => {
+  fetchCommitments: async (_projectId?: string) => {
     set({ loading: true });
     await new Promise(r => setTimeout(r, 300));
     set({ loading: false });

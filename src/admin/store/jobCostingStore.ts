@@ -339,7 +339,7 @@ export const useJobCostingStore = create<JobCostingState>((set, get) => ({
   budgetVersions: [],
   loading: false,
   
-  fetchBudgetLines: async (projectId: string) => {
+  fetchBudgetLines: async (_projectId: string) => {
     set({ loading: true });
     // Simular fetch
     await new Promise(r => setTimeout(r, 300));

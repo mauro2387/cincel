@@ -342,13 +342,13 @@ export const useCashPositionStore = create<CashPositionState>((set, get) => ({
     set({ loading: false });
   },
   
-  fetchMovements: async (accountId?: string) => {
+  fetchMovements: async (_accountId?: string) => {
     set({ loading: true });
     await new Promise(r => setTimeout(r, 300));
     set({ loading: false });
   },
   
-  fetchProjections: async (days: number) => {
+  fetchProjections: async (_days: number) => {
     set({ loading: true });
     await new Promise(r => setTimeout(r, 300));
     set({ loading: false });

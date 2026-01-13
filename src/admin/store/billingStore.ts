@@ -512,19 +512,19 @@ export const useBillingStore = create<BillingState>((set, get) => ({
   retentionSummary: mockRetentionSummary,
   loading: false,
   
-  fetchContracts: async (projectId?: string) => {
+  fetchContracts: async (_projectId?: string) => {
     set({ loading: true });
     await new Promise(r => setTimeout(r, 300));
     set({ loading: false });
   },
   
-  fetchSubcontractPayments: async (projectId?: string) => {
+  fetchSubcontractPayments: async (_projectId?: string) => {
     set({ loading: true });
     await new Promise(r => setTimeout(r, 300));
     set({ loading: false });
   },
   
-  fetchInvoices: async (type?: 'client' | 'supplier') => {
+  fetchInvoices: async (_type?: 'client' | 'supplier') => {
     set({ loading: true });
     await new Promise(r => setTimeout(r, 300));
     set({ loading: false });
