@@ -2,9 +2,9 @@
  * Clientes Page - Gestión de clientes
  */
 
-import React, { useState, useMemo } from 'react';
-import { useCrmStore } from '../store/crmStore';
-import type { Cliente } from '../store/crmStore';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useCrmStore } from '../store/crmStoreV2';
+import type { Cliente } from '../store/crmStoreV2';
 
 const PlusIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,13 +33,19 @@ const estadoLabels: Record<EstadoCliente, string> = {
 };
 
 export const ClientesPage: React.FC = () => {
-  const { clientes, obras, addCliente, updateCliente, deleteCliente, addNota } = useCrmStore();
+  const { clientes, obras, addCliente, updateCliente, deleteCliente, addNota, fetchClientes, fetchObras } = useCrmStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [estadoFilter, setEstadoFilter] = useState<EstadoCliente | 'todos'>('todos');
   const [showModal, setShowModal] = useState(false);
   const [selectedCliente, setSelectedCliente] = useState<Cliente | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [newNote, setNewNote] = useState('');
+
+  // Cargar clientes y obras al montar
+  useEffect(() => {
+    fetchClientes();
+    fetchObras();
+  }, [fetchClientes, fetchObras]);
 
   const [formData, setFormData] = useState({
     nombre: '',

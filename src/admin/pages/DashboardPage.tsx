@@ -2,9 +2,9 @@
  * Dashboard Page - Panel principal del admin
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useCrmStore } from '../store/crmStore';
+import { useCrmStore } from '../store/crmStoreV2';
 
 // Iconos
 const TrendUpIcon = () => (
@@ -75,7 +75,15 @@ const formatDate = (date: Date) => {
 };
 
 export const DashboardPage: React.FC = () => {
-  const { leads, clientes, obras, cotizaciones, actividades } = useCrmStore();
+  const { leads, clientes, obras, cotizaciones, actividades, fetchLeads, fetchClientes, fetchObras, fetchCotizaciones } = useCrmStore();
+
+  // Cargar todos los datos al montar
+  useEffect(() => {
+    fetchLeads();
+    fetchClientes();
+    fetchObras();
+    fetchCotizaciones();
+  }, [fetchLeads, fetchClientes, fetchObras, fetchCotizaciones]);
 
   // Métricas
   const leadsNuevos = leads.filter(l => l.estado === 'nuevo').length;

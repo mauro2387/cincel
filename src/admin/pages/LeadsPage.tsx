@@ -2,9 +2,9 @@
  * Leads Page - Gestión de leads/prospectos
  */
 
-import React, { useState, useMemo } from 'react';
-import { useCrmStore } from '../store/crmStore';
-import type { Lead } from '../store/crmStore';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useCrmStore } from '../store/crmStoreV2';
+import type { Lead } from '../store/crmStoreV2';
 
 const PlusIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,13 +55,18 @@ const estadoLabels: Record<EstadoLead, string> = {
 };
 
 export const LeadsPage: React.FC = () => {
-  const { leads, addLead, updateLead, deleteLead, addNota, convertLeadToCliente } = useCrmStore();
+  const { leads, addLead, updateLead, deleteLead, addNota, convertLeadToCliente, fetchLeads } = useCrmStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [estadoFilter, setEstadoFilter] = useState<EstadoLead | 'todos'>('todos');
   const [showModal, setShowModal] = useState(false);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [newNote, setNewNote] = useState('');
+
+  // Cargar leads al montar el componente
+  useEffect(() => {
+    fetchLeads();
+  }, [fetchLeads]);
 
   const [formData, setFormData] = useState({
     nombre: '',

@@ -2,9 +2,9 @@
  * Obras Page - Gestión de obras/proyectos
  */
 
-import React, { useState, useMemo } from 'react';
-import { useCrmStore } from '../store/crmStore';
-import type { Obra } from '../store/crmStore';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useCrmStore } from '../store/crmStoreV2';
+import type { Obra } from '../store/crmStoreV2';
 
 const PlusIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,12 +37,18 @@ const estadoLabels: Record<EstadoObra, string> = {
 };
 
 export const ObrasPage: React.FC = () => {
-  const { obras, clientes, addObra, updateObra, deleteObra } = useCrmStore();
+  const { obras, clientes, addObra, updateObra, deleteObra, fetchObras, fetchClientes } = useCrmStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [estadoFilter, setEstadoFilter] = useState<EstadoObra | 'todos'>('todos');
   const [showModal, setShowModal] = useState(false);
   const [selectedObra, setSelectedObra] = useState<Obra | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
+
+  // Cargar obras y clientes al montar
+  useEffect(() => {
+    fetchObras();
+    fetchClientes();
+  }, [fetchObras, fetchClientes]);
 
   const [formData, setFormData] = useState({
     nombre: '',

@@ -2,9 +2,9 @@
  * Cotizaciones Page - Gestión de cotizaciones/presupuestos
  */
 
-import React, { useState, useMemo } from 'react';
-import { useCrmStore } from '../store/crmStore';
-import type { Cotizacion } from '../store/crmStore';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useCrmStore } from '../store/crmStoreV2';
+import type { Cotizacion } from '../store/crmStoreV2';
 
 const PlusIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,11 +43,17 @@ interface ItemCotizacion {
 }
 
 export const CotizacionesPage: React.FC = () => {
-  const { cotizaciones, clientes, addCotizacion, updateCotizacion, deleteCotizacion } = useCrmStore();
+  const { cotizaciones, clientes, addCotizacion, updateCotizacion, deleteCotizacion, fetchCotizaciones, fetchClientes } = useCrmStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [estadoFilter, setEstadoFilter] = useState<EstadoCotizacion | 'todos'>('todos');
   const [showModal, setShowModal] = useState(false);
   const [selectedCotizacion, setSelectedCotizacion] = useState<Cotizacion | null>(null);
+
+  // Cargar cotizaciones y clientes al montar
+  useEffect(() => {
+    fetchCotizaciones();
+    fetchClientes();
+  }, [fetchCotizaciones, fetchClientes]);
 
   const [formData, setFormData] = useState({
     clienteId: '',

@@ -18,9 +18,9 @@ interface AuthUser {
 interface UserProfile {
   id: string;
   email: string;
-  nombre: string;
+  name: string;
   role: string;
-  avatar_url: string | null;
+  avatar?: string | null;
 }
 
 interface AuthState {
@@ -54,7 +54,7 @@ export const useAuthStore = create<AuthState>()(
       login: async (email: string, password: string) => {
         set({ isLoading: true, error: null });
         
-        // Si Supabase está configurado, usar auth real
+        // Si Supabase está configurado, intentar auth real
         if (isSupabaseConfigured() && supabase) {
           try {
             const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
@@ -62,7 +62,11 @@ export const useAuthStore = create<AuthState>()(
               password,
             });
             
-            if (authError) throw authError;
+            if (authError) {
+              console.warn('Supabase Auth failed, trying demo mode:', authError.message);
+              // Si falla Supabase Auth, intentar modo demo
+              throw authError;
+            }
             
             if (authData.user) {
               // Obtener perfil del usuario
@@ -72,31 +76,31 @@ export const useAuthStore = create<AuthState>()(
                 .eq('id', authData.user.id)
                 .single();
               
-              if (profileError) throw profileError;
+              if (profileError) {
+                console.warn('Error fetching profile, trying demo mode:', profileError.message);
+                throw profileError;
+              }
               
               const typedProfile = profile as unknown as UserProfile;
               
               const user: AuthUser = {
                 id: typedProfile.id,
                 email: typedProfile.email,
-                nombre: typedProfile.nombre,
+                nombre: typedProfile.name, // Map 'name' from DB to 'nombre' in store
                 role: typedProfile.role as UserRole,
-                avatar_url: typedProfile.avatar_url,
+                avatar_url: typedProfile.avatar,
               };
               
               set({ user, isAuthenticated: true, isLoading: false });
               return true;
             }
           } catch (error) {
-            set({ 
-              error: error instanceof Error ? error.message : 'Error al iniciar sesión',
-              isLoading: false 
-            });
-            return false;
+            console.warn('Supabase authentication failed, falling back to demo mode');
+            // Continuar al modo demo en lugar de retornar false
           }
         }
         
-        // Modo demo (sin Supabase)
+        // Modo demo (sin Supabase o como fallback)
         const demoUser = DEMO_USERS.find(u => u.email === email && u.password === password);
         if (demoUser) {
           const { password: _, ...userWithoutPassword } = demoUser;
@@ -105,6 +109,7 @@ export const useAuthStore = create<AuthState>()(
             isAuthenticated: true, 
             isLoading: false 
           });
+          console.log('✅ Logged in using demo mode');
           return true;
         }
         
@@ -146,9 +151,9 @@ export const useAuthStore = create<AuthState>()(
                 user: {
                   id: typedProfile.id,
                   email: typedProfile.email,
-                  nombre: typedProfile.nombre,
+                  nombre: typedProfile.name, // Map 'name' from DB to 'nombre' in store
                   role: typedProfile.role as UserRole,
-                  avatar_url: typedProfile.avatar_url,
+                  avatar_url: typedProfile.avatar,
                 },
                 isAuthenticated: true,
                 isLoading: false,

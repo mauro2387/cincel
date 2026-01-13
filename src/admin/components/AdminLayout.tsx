@@ -80,6 +80,24 @@ const IntegracionesIcon = () => (
   </svg>
 );
 
+const ComprasIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>
+);
+
+const ProveedoresIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+  </svg>
+);
+
+const FinanzasIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
 const MenuIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -95,13 +113,30 @@ const CloseIcon = () => (
 const menuItems = [
   { path: '/admin', label: 'Dashboard', icon: DashboardIcon, exact: true },
   { path: '/admin/inbox', label: 'Inbox', icon: InboxIcon },
+  // Comercial
+  { section: 'Comercial' },
   { path: '/admin/pipeline', label: 'Pipeline', icon: PipelineIcon },
   { path: '/admin/leads', label: 'Leads', icon: LeadsIcon },
   { path: '/admin/clientes', label: 'Clientes', icon: ClientesIcon },
-  { path: '/admin/obras', label: 'Obras', icon: ObrasIcon },
   { path: '/admin/cotizaciones', label: 'Cotizaciones', icon: CotizacionesIcon },
+  // Ejecución
+  { section: 'Ejecución' },
+  { path: '/admin/obras', label: 'Obras', icon: ObrasIcon },
   { path: '/admin/tareas', label: 'Tareas', icon: TareasIcon },
+  { path: '/admin/cuadrillas', label: 'Cuadrillas', icon: LeadsIcon },
+  { path: '/admin/compras', label: 'Compras', icon: ComprasIcon },
+  { path: '/admin/proveedores', label: 'Proveedores', icon: ProveedoresIcon },
+  // Control
+  { section: 'Control' },
+  { path: '/admin/calidad', label: 'Calidad', icon: TareasIcon },
+  { path: '/admin/incidentes', label: 'Incidentes', icon: ReportesIcon },
+  { path: '/admin/documentos', label: 'Documentos', icon: CotizacionesIcon },
+  // Financiero
+  { section: 'Financiero' },
+  { path: '/admin/finanzas', label: 'Finanzas', icon: FinanzasIcon },
   { path: '/admin/reportes', label: 'Reportes', icon: ReportesIcon },
+  // Sistema
+  { section: 'Sistema' },
   { path: '/admin/integraciones', label: 'Integraciones', icon: IntegracionesIcon },
   { path: '/admin/configuracion', label: 'Configuración', icon: ConfigIcon },
 ];
@@ -148,22 +183,33 @@ export const AdminLayout: React.FC = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="mt-4 px-2">
-          {menuItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg mb-1 transition-colors ${
-                isActive(item.path, item.exact)
-                  ? 'bg-amber-600 text-white'
-                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-              }`}
-              onClick={() => setSidebarOpen(false)}
-            >
-              <item.icon />
-              <span>{item.label}</span>
-            </Link>
-          ))}
+        <nav className="mt-4 px-2 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 180px)' }}>
+          {menuItems.map((item, index) => {
+            if ('section' in item) {
+              return (
+                <div key={index} className="px-4 py-2 mt-4 first:mt-0">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    {item.section}
+                  </span>
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={item.path}
+                to={item.path!}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg mb-0.5 transition-colors ${
+                  isActive(item.path!, item.exact)
+                    ? 'bg-amber-600 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`}
+                onClick={() => setSidebarOpen(false)}
+              >
+                {item.icon && <item.icon />}
+                <span className="text-sm">{item.label}</span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* User & Logout */}
@@ -201,7 +247,7 @@ export const AdminLayout: React.FC = () => {
             <MenuIcon />
           </button>
           <h1 className="text-lg font-semibold text-gray-800 ml-2 lg:ml-0">
-            {menuItems.find((item) => isActive(item.path, item.exact))?.label || 'Admin'}
+            {menuItems.find((item) => item.path && isActive(item.path, item.exact))?.label || 'Admin'}
           </h1>
         </header>
 

@@ -20,15 +20,25 @@ import {
   LeadsPage,
 } from './admin';
 import { PipelinePage } from './admin/pages/PipelinePage';
-import { PresupuestosPageV2 } from './admin/pages/PresupuestosPageV2';
-import { DashboardPageV2 } from './admin/pages/DashboardPageV2';
+import { CotizacionesPage } from './admin/pages/CotizacionesPage';
+import { DashboardPage } from './admin/pages/DashboardPage';
 import { InboxPage } from './admin/pages/InboxPage';
-import { ObrasPageV2 } from './admin/pages/ObrasPageV2';
+import { ObrasPage } from './admin/pages/ObrasPage';
 import { TareasPage } from './admin/pages/TareasPage';
-import { ClientesPageV2 } from './admin/pages/ClientesPageV2';
-import { ReportesPage } from './admin/pages/ReportesPage';
-import { ConfiguracionPage } from './admin/pages/ConfiguracionPage';
+import { ClientesPage } from './admin/pages/ClientesPage';
+import { ReportesPage } from './admin/pages/ReportesPageSimple';
+import { ConfiguracionPage } from './admin/pages/ConfiguracionPageSimple';
 import { IntegracionesPage } from './admin/pages/IntegracionesPage';
+// PRO Pages - Enterprise Grade
+import ObraDetallePagePro from './admin/pages/ObraDetallePagePro';
+import ComprasPagePro from './admin/pages/ComprasPagePro';
+import ProveedoresPagePro from './admin/pages/ProveedoresPagePro';
+import FinanzasPagePro from './admin/pages/FinanzasPagePro';
+// COS Pages - Construction Operating System
+import CalidadPage from './admin/pages/CalidadPage';
+import IncidentesPage from './admin/pages/IncidentesPage';
+import CuadrillasPage from './admin/pages/CuadrillasPage';
+import DocumentosPage from './admin/pages/DocumentosPage';
 
 function App() {
   return (
@@ -51,14 +61,22 @@ function App() {
         {/* Admin Routes */}
         <Route path="/admin/login" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<DashboardPageV2 />} />
+          <Route index element={<DashboardPage />} />
           <Route path="inbox" element={<InboxPage />} />
           <Route path="pipeline" element={<PipelinePage />} />
           <Route path="leads" element={<LeadsPage />} />
-          <Route path="clientes" element={<ClientesPageV2 />} />
-          <Route path="obras" element={<ObrasPageV2 />} />
-          <Route path="cotizaciones" element={<PresupuestosPageV2 />} />
+          <Route path="clientes" element={<ClientesPage />} />
+          <Route path="obras" element={<ObrasPage />} />
+          <Route path="obras/:id" element={<ObraDetallePagePro />} />
+          <Route path="cotizaciones" element={<CotizacionesPage />} />
           <Route path="tareas" element={<TareasPage />} />
+          <Route path="compras" element={<ComprasPagePro />} />
+          <Route path="proveedores" element={<ProveedoresPagePro />} />
+          <Route path="finanzas" element={<FinanzasPagePro />} />
+          <Route path="calidad" element={<CalidadPage />} />
+          <Route path="incidentes" element={<IncidentesPage />} />
+          <Route path="cuadrillas" element={<CuadrillasPage />} />
+          <Route path="documentos" element={<DocumentosPage />} />
           <Route path="reportes" element={<ReportesPage />} />
           <Route path="configuracion" element={<ConfiguracionPage />} />
           <Route path="integraciones" element={<IntegracionesPage />} />
