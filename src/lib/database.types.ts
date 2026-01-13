@@ -794,3 +794,295 @@ export type Tarea = Database['public']['Tables']['tareas']['Row'];
 export type BitacoraObra = Database['public']['Tables']['bitacora_obra']['Row'];
 export type Gasto = Database['public']['Tables']['gastos']['Row'];
 export type User = Database['public']['Tables']['users']['Row'];
+
+// ============================================
+// ERP CORE - TIPOS FINANCIEROS
+// ============================================
+
+// Enums ERP Core
+export type CashAccountType = 'cash' | 'bank' | 'digital_wallet' | 'investment';
+export type CashTransactionType = 'income' | 'expense' | 'transfer_in' | 'transfer_out';
+export type CashTransactionCategory = 
+  | 'client_payment' | 'advance_received' | 'retention_release'
+  | 'supplier_payment' | 'payroll' | 'tax' | 'overhead' | 'petty_cash'
+  | 'bank_fee' | 'interest' | 'transfer' | 'adjustment' | 'other';
+
+export type ContractStatus = 'draft' | 'active' | 'completed' | 'suspended' | 'cancelled';
+export type MilestoneTriggerType = 
+  | 'advance' | 'phase_completion' | 'percentage_progress' 
+  | 'inspection_approval' | 'delivery' | 'final' | 'retention_release';
+export type MilestoneStatus = 'pending' | 'ready' | 'invoiced' | 'partial_paid' | 'paid';
+
+export type ReceivableType = 'milestone' | 'change_order' | 'extra' | 'retention' | 'other';
+export type ReceivableStatus = 'draft' | 'pending' | 'partial' | 'paid' | 'overdue' | 'cancelled' | 'written_off';
+
+export type PayableType = 'purchase_order' | 'subcontract' | 'payroll' | 'tax' | 'overhead' | 'retention' | 'other';
+export type PayableStatus = 'draft' | 'pending' | 'partial' | 'paid' | 'overdue' | 'cancelled' | 'disputed';
+
+export type RetentionType = 'receivable' | 'payable';
+export type RetentionStatus = 'retained' | 'partial_released' | 'released' | 'forfeited';
+
+// Interfaces ERP Core
+
+export interface CashAccount {
+  id: string;
+  code: string;
+  name: string;
+  type: CashAccountType;
+  bank_name: string | null;
+  account_number: string | null;
+  currency: string;
+  initial_balance: number;
+  current_balance: number;
+  available_balance: number;
+  credit_limit: number;
+  is_default: boolean;
+  active: boolean;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CashTransaction {
+  id: string;
+  code: string;
+  account_id: string;
+  type: CashTransactionType;
+  category: CashTransactionCategory;
+  amount: number;
+  balance_after: number;
+  reference: string | null;
+  description: string;
+  project_id: string | null;
+  receivable_id: string | null;
+  payable_id: string | null;
+  transfer_account_id: string | null;
+  bank_reference: string | null;
+  reconciled: boolean;
+  reconciled_at: string | null;
+  reconciled_by: string | null;
+  transaction_date: string;
+  created_by: string | null;
+  created_at: string;
+}
+
+export interface Contract {
+  id: string;
+  code: string;
+  project_id: string;
+  client_id: string;
+  contract_amount: number;
+  adjusted_amount: number;
+  currency: string;
+  retention_percentage: number;
+  retention_amount: number;
+  retention_release_date: string | null;
+  retention_released: boolean;
+  signed_date: string | null;
+  start_date: string;
+  end_date: string;
+  actual_end_date: string | null;
+  status: ContractStatus;
+  contract_url: string | null;
+  attachments: string[];
+  notes: string | null;
+  total_invoiced: number;
+  total_received: number;
+  total_pending: number;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContractMilestone {
+  id: string;
+  contract_id: string;
+  order_number: number;
+  name: string;
+  description: string | null;
+  amount: number;
+  percentage: number | null;
+  retention_amount: number;
+  net_amount: number;
+  trigger_type: MilestoneTriggerType;
+  trigger_value: string | null;
+  expected_date: string | null;
+  completed_date: string | null;
+  invoiced_date: string | null;
+  paid_date: string | null;
+  status: MilestoneStatus;
+  invoice_number: string | null;
+  invoice_url: string | null;
+  paid_amount: number;
+  payment_reference: string | null;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Receivable {
+  id: string;
+  code: string;
+  type: ReceivableType;
+  project_id: string;
+  contract_id: string | null;
+  milestone_id: string | null;
+  change_order_id: string | null;
+  client_id: string;
+  amount: number;
+  tax_amount: number;
+  total_amount: number;
+  paid_amount: number;
+  pending_amount: number;
+  invoice_number: string | null;
+  invoice_date: string | null;
+  invoice_url: string | null;
+  due_date: string;
+  expected_payment_date: string | null;
+  status: ReceivableStatus;
+  days_overdue: number;
+  description: string | null;
+  notes: string | null;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Payable {
+  id: string;
+  code: string;
+  type: PayableType;
+  project_id: string | null;
+  purchase_order_id: string | null;
+  supplier_id: string | null;
+  amount: number;
+  tax_amount: number;
+  total_amount: number;
+  paid_amount: number;
+  pending_amount: number;
+  supplier_invoice_number: string | null;
+  supplier_invoice_date: string | null;
+  supplier_invoice_url: string | null;
+  due_date: string;
+  expected_payment_date: string | null;
+  status: PayableStatus;
+  days_overdue: number;
+  approved_for_payment: boolean;
+  approved_by: string | null;
+  approved_at: string | null;
+  description: string | null;
+  notes: string | null;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Retention {
+  id: string;
+  type: RetentionType;
+  project_id: string;
+  contract_id: string | null;
+  receivable_id: string | null;
+  payable_id: string | null;
+  original_amount: number;
+  retention_percentage: number;
+  retention_amount: number;
+  released_amount: number;
+  pending_amount: number;
+  retention_date: string;
+  expected_release_date: string | null;
+  actual_release_date: string | null;
+  status: RetentionStatus;
+  release_conditions: string | null;
+  released_by: string | null;
+  release_notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PaymentAllocation {
+  id: string;
+  transaction_id: string;
+  receivable_id: string | null;
+  payable_id: string | null;
+  amount: number;
+  allocation_date: string;
+  notes: string | null;
+  created_at: string;
+}
+
+// ============================================
+// TIPOS CALCULADOS PARA DASHBOARD FINANCIERO
+// ============================================
+
+export interface CashPositionSummary {
+  total_cash: number;
+  total_bank: number;
+  total_available: number;
+  
+  // Por cuenta
+  accounts: {
+    id: string;
+    name: string;
+    type: CashAccountType;
+    balance: number;
+    currency: string;
+  }[];
+  
+  // Movimientos del mes
+  income_mtd: number;
+  expense_mtd: number;
+  net_mtd: number;
+}
+
+export interface CashFlowProjection {
+  date: string;
+  starting_balance: number;
+  expected_income: number;
+  expected_expense: number;
+  committed_expense: number;
+  projected_balance: number;
+  cumulative_balance: number;
+}
+
+export interface ReceivablesAging {
+  current: number;
+  overdue_1_30: number;
+  overdue_31_60: number;
+  overdue_61_90: number;
+  overdue_90_plus: number;
+  total: number;
+}
+
+export interface PayablesAging {
+  current: number;
+  overdue_1_30: number;
+  overdue_31_60: number;
+  overdue_61_90: number;
+  overdue_90_plus: number;
+  total: number;
+}
+
+export interface FinancialDashboard {
+  // Posición actual
+  cash_position: CashPositionSummary;
+  
+  // Por cobrar / Por pagar
+  receivables_total: number;
+  receivables_aging: ReceivablesAging;
+  payables_total: number;
+  payables_aging: PayablesAging;
+  
+  // Comprometido (OC aprobadas no pagadas)
+  committed_total: number;
+  
+  // Proyección
+  projection_7_days: number;
+  projection_14_days: number;
+  projection_30_days: number;
+  
+  // Alertas
+  days_until_negative: number | null;
+  critical_payables: number;
+  overdue_receivables: number;
+}

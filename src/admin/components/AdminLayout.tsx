@@ -110,6 +110,19 @@ const CloseIcon = () => (
   </svg>
 );
 
+// Iconos adicionales para finanzas
+const CajaIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>
+);
+
+const CobrosIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+  </svg>
+);
+
 const menuItems = [
   { path: '/admin', label: 'Dashboard', icon: DashboardIcon, exact: true },
   { path: '/admin/inbox', label: 'Inbox', icon: InboxIcon },
@@ -131,8 +144,10 @@ const menuItems = [
   { path: '/admin/calidad', label: 'Calidad', icon: TareasIcon },
   { path: '/admin/incidentes', label: 'Incidentes', icon: ReportesIcon },
   { path: '/admin/documentos', label: 'Documentos', icon: CotizacionesIcon },
-  // Financiero
+  // Financiero - MEJORADO
   { section: 'Financiero' },
+  { path: '/admin/caja', label: '💰 Caja', icon: CajaIcon },
+  { path: '/admin/cobros', label: '📥 Cobros', icon: CobrosIcon },
   { path: '/admin/finanzas', label: 'Finanzas', icon: FinanzasIcon },
   { path: '/admin/reportes', label: 'Reportes', icon: ReportesIcon },
   // Sistema

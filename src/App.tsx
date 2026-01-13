@@ -39,6 +39,9 @@ import CalidadPage from './admin/pages/CalidadPage';
 import IncidentesPage from './admin/pages/IncidentesPage';
 import CuadrillasPage from './admin/pages/CuadrillasPage';
 import DocumentosPage from './admin/pages/DocumentosPage';
+// ERP Pages - Financial Core
+import CajaPage from './admin/pages/CajaPage';
+import CobrosPage from './admin/pages/CobrosPage';
 
 function App() {
   return (
@@ -72,6 +75,9 @@ function App() {
           <Route path="tareas" element={<TareasPage />} />
           <Route path="compras" element={<ComprasPagePro />} />
           <Route path="proveedores" element={<ProveedoresPagePro />} />
+          {/* Financiero - ERP Core */}
+          <Route path="caja" element={<CajaPage />} />
+          <Route path="cobros" element={<CobrosPage />} />
           <Route path="finanzas" element={<FinanzasPagePro />} />
           <Route path="calidad" element={<CalidadPage />} />
           <Route path="incidentes" element={<IncidentesPage />} />
